@@ -247,32 +247,35 @@
 			<section>
 				<section>
 					<h3>Asses your application</h2>
-					<ul>
-						<li>Is it more than 20 components?</li>
-						<li>How many sibling Component has to communicate?</li>
-						<li class="fragment">Does child component contain state from parent component?</li>
-						<li class="fragment">How many different views need to share state?</li>
-					</ul>
+						<ul>
+							<li>Is it more than 20 components?</li>
+							<li>How many sibling Component has to communicate?</li>
+							<li class="fragment">Does child component contain state from parent component?</li>
+							<li class="fragment">How many different views need to share state?</li>
+						</ul>
 				</section>
 				<section>
 					<h2>Assess your team</h2>
 					<ul class="fragment">
 						<li>Do a proof of concept in a feature branch</li>
 						<li class="fragment">Explore how it solves the problem before driving into it</li>
-						<span  class="fragment">
-								<li>Does team understand: Redux core concepts. </li>
-								<li>Can handle extra level of complexity</li>
-								<li>Immutabilty, pure function, etc.</li>	
-						</span>					
+						<span class="fragment">
+							<li>Does team understand: Redux core concepts. </li>
+							<li>Can handle extra level of complexity</li>
+							<li>Immutabilty, pure function, etc.</li>
+						</span>
 					</ul>
 				</section>
 				<section>
 					<h2>You might not need Redux</h2>
 					<ul>
-						<li>Leverage <a href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux"> Local storage</a> </li>
-						<li><a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a></li>
-						<li class="fragment">Come back to Redux if you find a real need for it</li>
+						<li>Think in React</li>
+						<li>Leverage
+							<a href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux">
+								Local storage</a>
+						</li>
 						<li class="fragment">You can apply ideas from Redux without using </li>
+						<li class="fragment">Come back to Redux if you find a real need for it</li>
 					</ul>
 					<br>
 					<br>
@@ -281,6 +284,139 @@
 							<a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a>
 						</small>
 					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h5>Option-1</h5>
+					<h2>Think in React</h2>
+					<p>When you are building from scratch</p>
+				</section>
+				<section>
+					<h3>Start with a mockup</h3>
+					<img src="./img/mockup.png" alt="">
+					<pre><code class="hljs" data-trim contenteditable>
+[
+  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"}
+];
+					</code></pre>
+					<br>
+					<p>
+						<small>
+							<a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<h3> Identify Component Hierarchy</h3>
+					<ul class="fragment">
+						<li>Draw boxes around component</li>
+						<li>Use Single responsibility principle</li>
+						<li>One component should ideally only do one thing</li>
+					</ul>
+					<img src="./img/mockup-component.png" alt="" class="fragment">
+					<aside class="notes">
+						<p> draw boxes around every component (and subcomponent) </p>
+						<p>What should be a compoent</p>
+						<p>use single responsibility principle,</p>
+						<p>that is, a component should ideally only do one thing. </p>
+						<small>If it ends up growing, it should be decomposed into smaller subcomponents.</small>
+					</aside>
+				</section>
+				<section>
+					<h2>Name your components</h2>
+					<ol>
+						<li>FilterableProductTable (orange)</li>
+						<li>SearchBar (blue)</li>
+						<li>ProductTable (green) </li>
+						<li>ProductCategoryRow (turquoise)</li>
+						<li>ProductRow (red)</li>
+					</ol>
+					<img src="./img/mockup-component.png" alt="" class="fragment">
+					<aside class="notes">
+						FilterableProductTable (orange): contains the entirety of the example
+						<br> SearchBar (blue): receives all user input
+						<br> ProductTable (green): displays and filters the data collection based on user input
+						<br> ProductCategoryRow (turquoise): displays a heading for each category
+						<br> ProductRow (red): displays a row for each product
+					</aside>
+				</section>
+				<section>
+					<h2>Create Component without interactions</h2>
+				</section>
+				<section>
+					<h4>Identify Minimal (but complete) UI State</h4>
+					<div class="fragment">
+						<p>Data you have...</p>
+						<ul>
+							<li>The original list of products</li>
+							<li>The search text the user has entered</li>
+							<li>The value of the checkbox</li>
+							<li>The filtered list of products</li>
+						</ul>
+					</div>
+					<img src="./img/mockup.png" alt="">
+				</section>
+				<section>
+					<h4>Identify Minimal (but complete) UI State</h4>
+					<div class="fragment">
+						<p class="fragment highlight-red">It's not a state if...</p>
+						<ol>
+							<li>Just passed from parent via props</li>
+							<li>Remain unchanged over time</li>
+							<li>Can be computed by using other state/props</li>
+						</ol>
+					</div>
+				</section>
+				<section>
+					<h2>
+						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
+
+					<ul>
+						<li>Products is passed in as props: not state</li>
+						<li>Filtered product can be computed via search text and checkbox: not state</li>
+						<li>Search text user can entered: state</li>
+						<li>Value in the checkbox: state</li>
+					</ul>
+					<img src="./img/mockup.png" alt="">
+				</section>
+				<section>
+					<h2>Where to put the state</h2>
+					<p>Just 3 rules</p>
+					<ol class="fragment">
+						<li>Identify component that just has to render</li>
+						<li class="fragment">Put state in the common owner in the higher up</li>
+						<li class="fragment">If you don't find a common owner, create one</li>
+					</ol>
+				</section>
+				<section>
+						<h2>Where to put the state</h2>
+					<ul class="fragment">
+						<li>
+							ProductTable filters based on search text and checked state.</li>
+						<li>The common owner component is
+							<code>FilterableProductTable</code>.</li>
+						<li class="fragment">
+							<code>FilterableProductTable</code> will contain the state
+						</li>
+					</ul>
+					<p><small><a href="https://codepen.io/gaearon/pen/LzWZvb?editors=0010">code pen</a></small></p>
+				</section>
+				<section>
+					<h2>Summary</h2>
+					<ol>
+						<li>Identify Component Hierarchy</li>
+						<li>Name your component</li>
+						<li>Create Component without interactions</li>
+						<li>Identify Minimal (but complete) UI State</li>
+						<li>Find where to put your component</li>
+					</ol>
+				</section>
+				<section>
+					<h1>Some Fun</h1>
 				</section>
 			</section>
 			<section>
@@ -369,26 +505,6 @@ function linkify( selector ) {
 				<p>Code syntax highlighting courtesy of
 					<a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 			</section>
-
-			<section>
-				<h2>Marvelous List</h2>
-				<ul>
-					<li>No order here</li>
-					<li>Or here</li>
-					<li>Or here</li>
-					<li>Or here</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>Fantastic Ordered List</h2>
-				<ol>
-					<li>One is smaller than...</li>
-					<li>Two is smaller than...</li>
-					<li>Three!</li>
-				</ol>
-			</section>
-
 			<section>
 				<h2>Tabular Tables</h2>
 				<table>
@@ -451,15 +567,6 @@ function linkify( selector ) {
 					window (hit 's' on your keyboard).
 				</aside>
 			</section>
-
-			<section>
-				<h2>Export to PDF</h2>
-				<p>Presentations can be
-					<a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-				<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0"
-				 marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-			</section>
-
 			<section>
 				<h2>Global State</h2>
 				<p>
