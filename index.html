@@ -230,7 +230,7 @@
 					<h3>Asses your application</h2>
 						<ul>
 							<li>Is it more than 20 components?</li>
-							<li>How many sibling Component has to communicate?</li>
+							<li class="fragment">How many sibling Components have to communicate?</li>
 							<li class="fragment">Does child component contain state from parent component?</li>
 							<li class="fragment">How many different views need to share state?</li>
 						</ul>
@@ -239,7 +239,7 @@
 					<h2>Assess your team</h2>
 					<ul class="fragment">
 						<li>Do a proof of concept in a feature branch</li>
-						<li class="fragment">Explore how it solves the problem before driving into it</li>
+						<li class="fragment">Explore how it solves the problem before diving into it</li>
 						<span class="fragment">
 							<li>Does team understand: Redux core concepts. </li>
 							<li>Can handle extra level of complexity</li>
@@ -255,7 +255,7 @@
 							<a href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux">
 								Local storage</a>
 						</li>
-						<li class="fragment">You can apply ideas from Redux without using </li>
+						<li class="fragment">You can apply ideas from Redux without using it</li>
 						<li class="fragment">Come back to Redux if you find a real need for it</li>
 					</ul>
 					<br>
@@ -465,314 +465,241 @@ class MyComponent extends Component {
 					<p>When you are building from scratch</p>
 				</section>
 				<section>
-						<h2>How we manage state</h2>
-					</section>
-					<section>
-						<img src="./img/redux/componentTree1.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/componentTree2.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/componentTree3.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/componentTree5.png" alt="">
-					</section>
+					<h2>How we manage state</h2>
+				</section>
+				<section>
+					<img src="./img/redux/componentTree1.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/componentTree2.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/componentTree3.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/componentTree5.png" alt="">
+				</section>
 			</section>
 			<section>
-					<section>
-						<h2>What if we put them in one place</h2>
-					</section>
-					<section>
-						<img src="./img/redux/centralState1.png" alt="">
-					</section>
-					
-					<section>
-						<img src="./img/redux/centralState3.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/centralState4.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/centralState5.png" alt="">
-					</section>
-					<section>
-						<h2>Store</h2>
-						<ul>
-							<li>Holds application state</li>
-							<li>Only one store for all its application state</li>
-							<li>Single source of truth</li>
-						</ul>
-					</section>
-					<section>
-						<img src="./img/redux/solve2.png" alt="">
-					</section>
-	
+				<section>
+					<h2>What if we put them in one place</h2>
 				</section>
 				<section>
-					<section>
-						<h2>How will we change the state?</h2>
-					</section>
-					<section>
-						<img src="./img/redux/centralState6.png" alt="">
-					</section>
-					<section>
-						<h2>Action</h2>
-						<ul>
-							<li>Actions</li>
-							<li>Action container</li>
-						</ul>
-						<pre><code class="hljs JavaScript">
-	{
-	  type: 'ADD_TODO',
-	  text: 'Take 8 bathroom breaks'
-	}
-						</code></pre>
-						<li class="fragment">dispatch action</li>
-						<aside class="notes">
-							<p>Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed. </p>
-						</aside>
-					</section>
-					<section>
-						<img src="./img/redux/centralState7.png" alt="">
-					</section>
+					<img src="./img/redux/centralState1.png" alt="">
 				</section>
-				<section>
-					<section>
-						<h2>But you didn't tell how state will change?</h2>
-					</section>
-					<section>
-						<h2 style="color:red">Actually state will not change</h2>
-						<h4 class="fragment">we will create a new state with the change</h4>
-						<pre class="hljs JavaScript fragment"><code>
-	function add(x, y){
-	  return x + y;
-	}
-						</code></pre>
-						<pre class="hljs JavaScript fragment" data-trim><code>
-	add(1, 2); // output is 3
-	add(1, 2); // output still is 3
-	add(1, 2); // WILL ALWAYS output 3
-						</code></pre>
-					</section>
-					<section>
-						<img src="./img/redux/stateChange8.png" alt="">
-					</section>
-					<section>
-						<img src="./img/redux/stateChange9.png" alt="">
-					</section>
-					<section>
-						<h2>reducer</h2>
-						<ul>
-							<li>Actions describe the fact that something happened</li>
-							<li>Action don't specify how the application's state should change</li>
-							<li class="fragment">How state will change will be defined by <strong>reducer</strong></li>
-						</ul>
-						<pre class="hljs javascript"><code>
-	case ADD_TODO:
-	  return [
-		...state,
-	   {
-		 text: action.text,
-		 completed: false
-	   }
-	]
-						</code></pre>
-					</section>
-					<section>
-						<h2>reducer</h2>
-						<img src="./img/redux/reducer.png" alt="">
-					</section>
-					<section>
-						<h2>Data Flow</h2>
-						<ul>
-							<li>Action is a plain object describing what happened</li>
-							<li class="fragment">Call store.dispatch(action) from anywhere in your app</li>
-							<li class="fragment">Store calls the reducer function you gave for the given action</li>
-							<li class="fragment">In root reducer you may combine multiple reducers into a single state tree</li>
-							<li class="fragment">Store saves the complete state tree returned by the root reducer</li>
-						</ul>
-					</section>
-				</section>
-				<section>
-					<section>
-							<h2>Basic Building Block</h2>
-							<ul>
-								<li>Store</li>
-								<li>Action</li>
-								<li>Dispatch</li>
-								<li>Reducer</li>
-							</ul>
-					</section>
-				</section>
-				<section>
-						<section>
-							<h2>Implement Redux</h2>
-						</section>
-						<section>
-							<pre><code class="hljs javascript">
-		npm install --save redux
-		npm install --save react-redux
-							</code></pre>
-						</section>
-						<section>
-							<img src="./img/redux/containerComponent.png" alt="">
-							<p><small>ref: <a href="https://giamir.com/unit-testing-a-react-redux-app">unit test ract redux app</a></small></p>
-						</section>
-						<section>
-							<img src="./img/redux/smartcompoent.png" alt="">
-						</section>
-					</section>
-			<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-				<h2>Background Transitions</h2>
-				<p>
-					Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-				</p>
-				<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
-			</section>
 
-			<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-				<h2>Background Transitions</h2>
-				<p>
-					You can override background transitions per-slide.
-				</p>
-				<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
-			</section>
+				<section>
+					<img src="./img/redux/centralState3.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/centralState4.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/centralState5.png" alt="">
+				</section>
+				<section>
+					<h2>Store</h2>
+					<ul>
+						<li>Holds application state</li>
+						<li>Only one store for all its application state</li>
+						<li>Single source of truth</li>
+					</ul>
+				</section>
+				<section>
+					<img src="./img/redux/solve2.png" alt="">
+				</section>
 
+			</section>
 			<section>
-				<h2>Pretty Code</h2>
-				<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
+				<section>
+					<h2>How will we change the state?</h2>
+				</section>
+				<section>
+					<img src="./img/redux/centralState6.png" alt="">
+				</section>
+				<section>
+					<h2>Action</h2>
+					<ul>
+						<li>Actions</li>
+						<li>Action container</li>
+					</ul>
+					<pre><code class="hljs JavaScript">
+{
+	type: 'ADD_TODO',
+	text: 'Take 8 bathroom breaks'
 }
-					</code></pre>
-				<p>Code syntax highlighting courtesy of
-					<a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+						</code></pre>
+					<li class="fragment">dispatch action</li>
+					<aside class="notes">
+						<p>Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed.
+							</p>
+					</aside>
+				</section>
+				<section>
+					<img src="./img/redux/centralState7.png" alt="">
+				</section>
 			</section>
 			<section>
-				<h2>Tabular Tables</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>Item</th>
-							<th>Value</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Apples</td>
-							<td>$1</td>
-							<td>7</td>
-						</tr>
-						<tr>
-							<td>Lemonade</td>
-							<td>$2</td>
-							<td>18</td>
-						</tr>
-						<tr>
-							<td>Bread</td>
-							<td>$3</td>
-							<td>2</td>
-						</tr>
-					</tbody>
-				</table>
+				<section>
+					<h2>But you didn't tell how state will change?</h2>
+				</section>
+				<section>
+					<h2 style="color:red">Actually state will not change</h2>
+					<h4 class="fragment">we will create a new state with the change</h4>
+					<pre class="hljs JavaScript fragment"><code>
+function add(x, y){
+	return x + y;
+}
+						</code></pre>
+					<pre class="hljs JavaScript fragment" data-trim><code>
+add(1, 2); // output is 3
+add(1, 2); // output still is 3
+add(1, 2); // WILL ALWAYS output 3
+						</code></pre>
+				</section>
+				<section>
+					<img src="./img/redux/stateChange8.png" alt="">
+				</section>
+				<section>
+					<img src="./img/redux/stateChange9.png" alt="">
+				</section>
+				<section>
+					<h2>reducer</h2>
+					<ul>
+						<li>Actions describe the fact that something happened</li>
+						<li>Action don't specify how the application's state should change</li>
+						<li class="fragment">How state will change will be defined by
+							<strong>reducer</strong>
+						</li>
+					</ul>
+					<pre class="hljs javascript"><code>
+case ADD_TODO:
+	return [
+	...state,
+	{
+		text: action.text,
+		completed: false
+	}
+]
+						</code></pre>
+				</section>
+				<section>
+					<h2>reducer</h2>
+					<img src="./img/redux/reducer.png" alt="">
+				</section>
+				<section>
+					<h2>Data Flow</h2>
+					<ul>
+						<li>Action is a plain object describing what happened</li>
+						<li class="fragment">Call store.dispatch(action) from anywhere in your app</li>
+						<li class="fragment">Store calls the reducer function you gave for the given action</li>
+						<li class="fragment">In root reducer you may combine multiple reducers into a single state tree</li>
+						<li class="fragment">Store saves the complete state tree returned by the root reducer</li>
+					</ul>
+				</section>
 			</section>
-
 			<section>
-				<h2>Clever Quotes</h2>
-				<p>
-					These guys come in two forms, inline:
-					<q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
-				</p>
-				<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-					&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would reproduce
-					the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-				</blockquote>
+				<section>
+					<h2>Basic Building Block</h2>
+					<ul>
+						<li>Store</li>
+						<li>Action</li>
+						<li>Dispatch</li>
+						<li>Reducer</li>
+					</ul>
+				</section>
 			</section>
-
 			<section>
-				<h2>Intergalactic Interconnections</h2>
-				<p>
-					You can link between slides internally,
-					<a href="#/2/3">like this</a>.
-				</p>
+				<section>
+					<h2>Implement Redux</h2>
+				</section>
+				<section>
+					<pre><code class="hljs javascript">
+npm install --save redux
+npm install --save react-redux
+							</code></pre>
+				</section>
+				<section>
+					<img src="./img/redux/containerComponent.png" alt="">
+					<p>
+						<small>ref:
+							<a href="https://giamir.com/unit-testing-a-react-redux-app">unit test ract redux app</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<img src="./img/redux/smartcompoent.png" alt="">
+				</section>
 			</section>
+			<section>
+				<section>
+					<h2>Is Redux the only option?</h2>
+				</section>
+				<section>
+						<h4>MobX is one option</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Redux</th>
+									<th>MobX</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>single store</td>
+									<td>multiple stores</td>
+								</tr>
+								<tr>
+										<td>flat state</td>
+										<td>nested state</td>
+									</tr>
+								<tr>
+									<td>functional programming </td>
+									<td>OOP &  reactive programming</td>
+								</tr>
+								<tr>
+									<td>immutable</td>
+									<td>mutable</td>
+								</tr>
+								<tr>
+									<td>plain JavaScript</td>
+									<td>“magic” JavaScript</td>
+								</tr>
+								<tr>
+									<td>more boilerplate</td>
+									<td>less boilerplate</td>
+								</tr>
+							</tbody>
+						</table>
+						<p><small>
+							<a href="https://mobx.js.org/">MobX</a>
+							,
+							<a href="https://www.robinwieruch.de/redux-mobx-confusion/"> Redux or MobX</a></small>
+							<small>,</small>
+						<small><a href="https://codeburst.io/mobx-vs-redux-with-react-a-noobs-comparison-and-questions-382ba340be09">MobX vs Redux</a></small></p>
+				</section>
+				<section>
+					<h2>Other options</h2>
+					<ul>
+						<li><a href="https://www.reindex.io/blog/redux-and-relay/">Relay/Apollo & GraphQL</a></li>
+						<li><a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Unstated</a>, <a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Explore unstated</a></li>
+						<li><a href=""></a></li>
+						<li><a href=""></a></li>
+					</ul>
 
+				</section>
+			</section>
 			<section>
 				<h2>Speaker View</h2>
 				<p>There's a
 					<a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
 				<p>Press the
 					<em>S</em> key to try it out.</p>
-
 				<aside class="notes">
 					Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
 					window (hit 's' on your keyboard).
 				</aside>
 			</section>
-			<section>
-				<h2>Global State</h2>
-				<p>
-					Set
-					<code>data-state="something"</code> on a slide and
-					<code>"something"</code> will be added as a class to the document element when the slide is open. This lets you apply broader style changes,
-					like switching the page background.
-				</p>
-			</section>
-
-			<section data-state="customevent">
-				<h2>State Events</h2>
-				<p>
-					Additionally custom events can be triggered on a per slide basis by binding to the
-					<code>data-state</code> name.
-				</p>
-				<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-			</section>
-
-			<section>
-				<h2>Take a Moment</h2>
-				<p>
-					Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting
-					slides off the screen.
-				</p>
-			</section>
-
-			<section>
-				<h2>Much more</h2>
-				<ul>
-					<li>Right-to-left support</li>
-					<li>
-						<a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a>
-					</li>
-					<li>
-						<a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a>
-					</li>
-					<li>
-						<a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a>
-					</li>
-					<li>
-						<a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a>
-					</li>
-				</ul>
-			</section>
-
 			<section style="text-align: left;">
 				<h1>THE END</h1>
 				<p>
