@@ -329,22 +329,23 @@
 					<h2>Create Component without interactions</h2>
 				</section>
 				<section>
-					<h4>Identify Minimal (but complete) UI State</h4>
+					<h4>Data you have...</h4>
 					<div class="fragment">
-						<p>Data you have...</p>
+						<p></p>
 						<ul>
-							<li>The original list of products</li>
-							<li>The search text the user has entered</li>
-							<li>The value of the checkbox</li>
-							<li>The filtered list of products</li>
+							<li>Original list of products</li>
+							<li>Search text the user has entered</li>
+							<li>Value of the checkbox</li>
+							<li>Filtered list of products</li>
 						</ul>
 					</div>
 					<img src="./img/mockup.png" alt="">
 				</section>
 				<section>
 					<h4>Identify Minimal (but complete) UI State</h4>
+					<p class="fragment highlight-red">It's not a React state if...</p>
 					<div class="fragment">
-						<p class="fragment highlight-red">It's not a state if...</p>
+
 						<ol>
 							<li>Just passed from parent via props</li>
 							<li>Remain unchanged over time</li>
@@ -532,7 +533,7 @@ class MyComponent extends Component {
 					<li class="fragment">dispatch action</li>
 					<aside class="notes">
 						<p>Actions are plain JavaScript objects. Actions must have a type property that indicates the type of action being performed.
-							</p>
+						</p>
 					</aside>
 				</section>
 				<section>
@@ -636,79 +637,259 @@ npm install --save react-redux
 					<h2>Is Redux the only option?</h2>
 				</section>
 				<section>
-						<h4>MobX is one option</h4>
-						<table>
-							<thead>
-								<tr>
-									<th>Redux</th>
-									<th>MobX</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>single store</td>
-									<td>multiple stores</td>
-								</tr>
-								<tr>
-										<td>flat state</td>
-										<td>nested state</td>
-									</tr>
-								<tr>
-									<td>functional programming </td>
-									<td>OOP &  reactive programming</td>
-								</tr>
-								<tr>
-									<td>immutable</td>
-									<td>mutable</td>
-								</tr>
-								<tr>
-									<td>plain JavaScript</td>
-									<td>“magic” JavaScript</td>
-								</tr>
-								<tr>
-									<td>more boilerplate</td>
-									<td>less boilerplate</td>
-								</tr>
-							</tbody>
-						</table>
-						<p><small>
+					<h4>MobX is one option</h4>
+					<table>
+						<thead>
+							<tr>
+								<th>Redux</th>
+								<th>MobX</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>single store</td>
+								<td>multiple stores</td>
+							</tr>
+							<tr>
+								<td>flat state</td>
+								<td>nested state</td>
+							</tr>
+							<tr>
+								<td>functional programming </td>
+								<td>OOP & reactive programming</td>
+							</tr>
+							<tr>
+								<td>immutable</td>
+								<td>mutable</td>
+							</tr>
+							<tr>
+								<td>plain JavaScript</td>
+								<td>“magic” JavaScript</td>
+							</tr>
+							<tr>
+								<td>more boilerplate</td>
+								<td>less boilerplate</td>
+							</tr>
+						</tbody>
+					</table>
+					<p>
+						<small>
 							<a href="https://mobx.js.org/">MobX</a>
 							,
-							<a href="https://www.robinwieruch.de/redux-mobx-confusion/"> Redux or MobX</a></small>
-							<small>,</small>
-						<small><a href="https://codeburst.io/mobx-vs-redux-with-react-a-noobs-comparison-and-questions-382ba340be09">MobX vs Redux</a></small></p>
+							<a href="https://www.robinwieruch.de/redux-mobx-confusion/"> Redux or MobX</a>
+						</small>
+						<small>,</small>
+						<small>
+							<a href="https://codeburst.io/mobx-vs-redux-with-react-a-noobs-comparison-and-questions-382ba340be09">MobX vs Redux</a>
+						</small>
+					</p>
 				</section>
 				<section>
 					<h2>Other options</h2>
 					<ul>
-						<li><a href="https://www.reindex.io/blog/redux-and-relay/">Relay/Apollo & GraphQL</a></li>
-						<li><a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Unstated</a>, <a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Explore unstated</a></li>
-						<li><a href=""></a></li>
-						<li><a href=""></a></li>
+						<li>
+							<a href="https://www.reindex.io/blog/redux-and-relay/">Relay/Apollo & GraphQL</a>
+						</li>
+						<li>
+							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Unstated</a>,
+							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Explore unstated</a>
+						</li>
+						<li>
+							<a href="">Local Storage</a>
+						</li>
+						<li>
+							<a href="">Just React</a>
+						</li>
 					</ul>
 
 				</section>
 			</section>
 			<section>
-				<h2>Speaker View</h2>
-				<p>There's a
-					<a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-				<p>Press the
-					<em>S</em> key to try it out.</p>
-				<aside class="notes">
-					Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
-					window (hit 's' on your keyboard).
-				</aside>
+				<section>
+					<h1>Redux Saga</h1>
+				</section>
+				<section>
+					<h2>Redux-saga</h2>
+					<ul>
+						<li>Handles application side effects</li>
+						<li>Asynchronous things like data fetching</li>
+						<li>Access the browser cache</li>
+
+					</ul>
+
+				</section>
+				<section>
+					<h2>Redux-saga</h2>
+					<ul>
+						<li>A separate thread in your application</li>
+						<li>A redux middleware</li>
+						<li>Start, pause or cancel by redux actions</li>
+						<li>Can access redux state</li>
+						<li>Can dispatch redux actions</li>
+					</ul>
+					<!-- <small class="hide">easier to manage, more efficient to execute, simple to test, and better at handling failures.</small> -->
+				</section>
 			</section>
-			<section style="text-align: left;">
-				<h1>THE END</h1>
-				<p>
-					-
-					<a href="https://slides.com">Try the online editor</a>
-					<br> -
-					<a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-				</p>
+			<section>
+				<section>
+					<h2>ES6 Generator</h2>
+					<pre class="hljs javascript"><code data-trim>
+	function *foo() {
+	  yield 1;
+	  yield 2;
+	  yield 3;
+	  yield 4;
+	  yield 5;
+	}
+						</code></pre>
+					<pre class="fragment hljs javascript"><code>
+	var fooed = foo();
+	fooed.next(); //{value: 1, done: false}	
+	fooed.next(); //{value: 2, done: false}	
+	fooed.next(); //{value: 3, done: false}	
+	fooed.next(); //{value: 4, done: false}	
+	fooed.next(); //{value: 5, done: false}	
+	fooed.next(); //{value: undefined, done: true}
+						</code></pre>
+				</section>
+				<section>
+					<h2>Saga Helpers</h2>
+					<ul>
+						<li>
+							<strong>put:</strong> dispatches an action.</li>
+						<li>
+							<strong>select:</strong> get data from the state</li>
+						<br>
+						<li class="fragment">
+							<strong>fork:</strong> performs a non-blocking operation </li>
+						<li class="fragment">
+							<strong>call:</strong> runs a function. If it returns a promise, pauses the saga until the promise is resolved.</li>
+						<br>
+						<li class="fragment">
+							<strong>take:</strong> pauses until action received.</li>
+
+						<li class="fragment">
+							<strong>takeEvery:</strong> return results for all the calls triggered.</li>
+						<li class="fragment">
+							<strong>takeLatest:</strong> If we trigger several cases, it’s going to ignore all of them except the last one</li>
+
+					</ul>
+				</section>
+				<section>
+					<h2>Create Saga</h2>
+					<pre class="hljs javascript"><code data-trim>
+	function* loadUser() {
+	  try {
+		//1st step: call getUser,  then assign value to user
+		const user = yield call(fetch, '/getUser', { method: 'GET' });
+		
+	   //2nd step: dispatch action
+	   yield put({type: 'FETCH_USER_SUCCESS', payload: user});
+	  } 
+	  catch(error) {
+		//optional step: if something fails dispatch fail
+		yield put({type: 'FETCH_FAILED', error});
+	  }
+	}
+							</code></pre>
+				</section>
+				<section>
+					<h2>Register Saga Generator</h2>
+					<pre class="hljs javascript"><code data-trim>
+	function* sagas() {
+	  yield[
+	   fork(loadUser),
+	   takeLatest('LOAD_DASHBOARD', loadDashboardSequenced)
+	  ];
+	}	
+						</code></pre>
+				</section>
+				<section>
+					<h2>Inject the Saga Middleware </h2>
+					<pre class="hljs javascript"><code data-trim>
+	import { applyMiddleware, createStore } from 'redux';
+	import createSagaMiddleware from 'redux-saga';
+	import reducers from './reducers';
+	import sagas from './sagas';
+	
+	const sagaMiddleware = createSagaMiddleware();
+	let middleware = applyMiddleware(sagaMiddleware);
+	
+	const store = createStore(reducers, middleware);
+	sagaMiddleware.run(sagas);
+	
+	// inject sagas into the middleware
+	sagaMiddleware.run(sagas); 
+	
+							</code></pre>
+				</section>
+
+				<section>
+					<h2>Advanced Usage</h2>
+					<ul>
+						<li>Nesting Sagas</li>
+						<li>Sequential Sagas</li>
+						<li>Race saga</li>
+						<li>Multiple Sagas</li>
+						<li>Task Cancellation</li>
+						<li>Testing Saga</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Pros and Cons</h2>
+					<ul>
+						<li>Saga: easy to test sagas as call() returns a pure object</li>
+						<li>Thunk: normally requires you to include a mockStore</li>
+						<li>Sagas offer independent place to handle all side effects.</li>
+						<li>saga: comes with lots of helper functions</li>
+					</ul>
+					<ul class="fragment">
+						<li>Generator syntax.</li>
+						<li>Lots of concepts to learn.</li>
+					</ul>
+					<br>
+					<p>
+						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">saga vs thunk</a>
+					</p>
+				</section>
+				<section>
+					<h2>References</h2>
+					<ul>
+						<li>
+							<a href="https://medium.freecodecamp.org/async-operations-using-redux-saga-2ba02ae077b3">Async operations using redux-saga</a>
+						</li>
+						<li>
+							<a href="https://wecodetheweb.com/2016/10/01/handling-async-in-redux-with-sagas/">Handling async in Redux with Sagas</a>
+						</li>
+						<li>
+							<a href="https://riad.blog/2015/12/28/redux-nowadays-from-actions-creators-to-sagas/">From actions creators to sagas</a>
+						</li>
+
+						<li>
+							<a href="https://medium.com/@tonypai/learn-redux-saga-with-simple-example-a7175417f9fd"> Redux Saga With Example</a>
+						</li>
+					</ul>
+				</section>
 			</section>
+			<section>
+				<section data-background="./img/workshop.jpg">
+					<h2>Learn React</h2>
+					<p>Day long Hand's on 
+						<a href="https://github.com/hakimel/reveal.js#speaker-notes">workshop</a></p>
+					<aside class="notes">
+						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
+						window (hit 's' on your keyboard).
+					</aside>
+				</section>
+				<section style="text-align: left;">
+					<h1>THE END</h1>
+					<p>
+						-
+						<a href="https://slides.com">Try the online editor</a>
+						<br> -
+						<a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
+					</p>
+				</section>
 
 		</div>
 
