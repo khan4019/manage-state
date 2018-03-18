@@ -32,11 +32,11 @@
 	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-		<style>
-		.hide{
+	<style>
+		.hide {
 			display: none !important;
 		}
-		</style>
+	</style>
 </head>
 
 <body>
@@ -124,11 +124,12 @@
 					<ol>
 						<li class="fragment">Application State: Global State
 							<ul>
-								<li>Like: Session storage/ store in Redux</li>
+								<li>Like: Session storage/ Database/others</li>
 								<li>Think it like a database</li>
 								<li>Any component, anywhere in the app can access</li>
 							</ul>
 						</li>
+						<br>
 						<li class="fragment">Component State
 							<ul>
 								<li>Within that specific component</li>
@@ -149,31 +150,29 @@
 			<section>
 				<section>
 					<h2>Think about an Application</h2>
-					<h6><a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a></h6>
+					<h6>
+						<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
+					</h6>
 				</section>
 				<section>
 					<img src="./img/ema-john0.png" alt="">
-					<p class="fragment"><small>Can you spot some state here?</small></p>
+					<p class="fragment">
+						<small>Can you spot some state here?</small>
+					</p>
 				</section>
 				<section>
-						<h2>Component State</h2>
-						<img src="./img/ema-john0.png" alt="">
-					</section>
+					<h2>Component State</h2>
+					<img src="./img/ema-john0.png" alt="">
+				</section>
 				<section>
 					<h2>Global State</h2>
 					<img src="./img/ema-john.png" alt="">
 				</section>
 			</section>
-			<section>
-				<h2>Touch Optimized</h2>
-				<p>
-					Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-				</p>
-			</section>
-
 			<section data-markdown>
 				<script type="text/template">
 						## Markdown support
+						#### keep it  Just for reference
 
 						Write content using inline or external Markdown.
 						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
@@ -190,69 +189,115 @@
 			</section>
 
 			<section>
-				<section id="fragments">
-					<h2>Fragments</h2>
-					<p>Hit the next arrow...</p>
-					<p class="fragment">... to step through ...</p>
-					<p>
-						<span class="fragment">... a</span>
-						<span class="fragment">fragmented</span>
-						<span class="fragment">slide.</span>
-					</p>
-
+				<section>
+					<h2>Adding more features...</h2>
+				</section>
+				<section>
+					<h4>More features mean...</h4>
+					<ul class="fragment">
+						<li>More components</li>
+						<li>More data, more props has to pass data</li>
+						<li class="fragment">State grows and becomes complicated</li>
+						<li class="fragment">More event handler has to be managed</li>
+						<br>
+						<li class="fragment"> more mess...</li>
+					</ul>
 					<aside class="notes">
-						This slide has fragments which are also stepped through in the notes window.
+						<small>But Don't worry the bigger is the mess, this higher is the job security</small>
+					</aside>
+				</section>
+				<section data-background="./img/knock.jpg">
+					<h2 class="fragment highlight-red">Redux</h2>
+					<p>Will start knocking at your door</p>
+					<aside class="notes">
+
 					</aside>
 				</section>
 				<section>
-					<h2>Fragment Styles</h2>
-					<p>There's different types of fragments, like:</p>
-					<p class="fragment grow">grow</p>
-					<p class="fragment shrink">shrink</p>
-					<p class="fragment fade-out">fade-out</p>
-					<p class="fragment fade-up">fade-up (also down, left and right!)</p>
-					<p class="fragment current-visible">current-visible</p>
-					<p>Highlight
-						<span class="fragment highlight-red">red</span>
-						<span class="fragment highlight-blue">blue</span>
-						<span class="fragment highlight-green">green</span>
+					<h2>Redux will ask you</h2>
+					<ul>
+						<li>Put state out of your component</li>
+						<li class="fragment">Create state as plain objects and arrays</li>
+						<li class="fragment">Describe changes as plain objects.</li>
+						<li class="fragment">Handling changes as pure functions.</li>
+					</ul>
+					<br>
+					<p class="fragment">
+						<small>None of these is a must to build an app</small>
+					</p>
+				</section>
+				<section data-background="./img/worse.jpg">
+					<h2>Adding
+						<span class="fragment highlight-green">Redux</span>
+					</h2>
+					<ul>
+						<li class="fragment">Will add an indirection to your problem</li>
+						<li class="fragment">Will shift the complexity in a different direction</li>
+						<li class="fragment">Could make your situation
+							<strong class="fragment highlight-red"> worse</strong>
+						</li>
+					</ul>
+					<p class="fragment">Is redux is a must?</p>
+					<aside class="notes">
+						<h2>Question arises...</h2>
+						<p>Answer is: you dont have to</p>
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Asses your application</h2>
+					<ul>
+						<li>Is it more than 20 components?</li>
+						<li>How many sibling Component has to communicate?</li>
+						<li class="fragment">Does child component contain state from parent component?</li>
+						<li class="fragment">How many different views need to share state?</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Assess your team</h2>
+					<ul class="fragment">
+						<li>Do a proof of concept in a feature branch</li>
+						<li class="fragment">Explore how it solves the problem before driving into it</li>
+						<span  class="fragment">
+								<li>Does team understand: Redux core concepts. </li>
+								<li>Can handle extra level of complexity</li>
+								<li>Immutabilty, pure function, etc.</li>	
+						</span>					
+					</ul>
+				</section>
+				<section>
+					<h2>You might not need Redux</h2>
+					<ul>
+						<li>Leverage <a href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux"> Local storage</a> </li>
+						<li><a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a></li>
+						<li class="fragment">Come back to Redux if you find a real need for it</li>
+						<li class="fragment">You can apply ideas from Redux without using </li>
+					</ul>
+					<br>
+					<br>
+					<p>
+						<small>
+							<a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a>
+						</small>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Manage state without Redux</h2>
+					<br>
+					<br>
+					<p>
+						<small>
+							<a href="https://monicalent.com/blog/2017/07/23/manage-state-in-react/">React state without Redux</a>
+						</small>
 					</p>
 				</section>
 			</section>
 
-			<section id="transitions">
-				<h2>Transition Styles</h2>
-				<p>
-					You can select from different transitions, like:
-					<br>
-					<a href="?transition=none#/transitions">None</a> -
-					<a href="?transition=fade#/transitions">Fade</a> -
-					<a href="?transition=slide#/transitions">Slide</a> -
-					<a href="?transition=convex#/transitions">Convex</a> -
-					<a href="?transition=concave#/transitions">Concave</a> -
-					<a href="?transition=zoom#/transitions">Zoom</a>
-				</p>
-			</section>
+			<section>
 
-			<section id="themes">
-				<h2>Themes</h2>
-				<p>
-					reveal.js comes with a few themes built in:
-					<br>
-					<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a>
-					<br>
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-					<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
-				</p>
 			</section>
 
 			<section>
