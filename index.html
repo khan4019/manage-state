@@ -46,9 +46,9 @@
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
 			<section>
-				<h1>Manage  state</h1>
+				<h1>Manage state</h1>
 				<h5>of</h5>
-				<h3>a  large  React  App</h3>
+				<h3>a large React App</h3>
 				<p>
 					<small>by
 						<a href="https://twitter.com/Karinaislam2">Karina</a> and
@@ -56,8 +56,17 @@
 					</small>
 				</p>
 			</section>
-
-			<!-- Example of nested vertical slides -->
+			<section>
+				<h2>We will cover</h2>
+				<ol>
+					<li>Explore State</li>
+					<li>Manage state in react</li>
+					<li>State without Redux</li>
+					<li>Manage state by using Redux</li>
+					<li>Redux-saga</li>
+					<li>Other options to manage state</li>
+				</ol>
+			</section>
 			<section>
 				<section>
 					<h2>What is a state?</h2>
@@ -72,6 +81,7 @@
 						<li>And your husband is grilling some bacon</li>
 					</ul>
 					<br>
+					<br>
 					<p class="fragment">Your state is:
 						<strong>pretty relaxed</strong>. </p>
 				</section>
@@ -85,18 +95,19 @@
 						<li>Everyone is staring at you</li>
 					</ul>
 					<br>
+					<br>
 					<p class="fragment">Your state is:
 						<strong>pretty nervous</strong>.</p>
 					<p class="fragment">
-						<small>This means state of your mind changes based on the situations</small>
+						<small>This means state of your mind changes based on the situation</small>
 					</p>
 				</section>
 				<section>
 					<h2>So what is a state?</h2>
 					<p class="fragment">State is something</p>
 					<ul class="fragment">
-						<li>that might change</li>
-						<li>like: your mood, your confidence level</li>
+						<li>That might change</li>
+						<li>Like: your mood, your confidence level</li>
 						<li>like state of water: ice, water, stream</li>
 						<li>or emotion about your partner</li>
 					</ul>
@@ -188,7 +199,7 @@
 						<small>But Don't worry the bigger is the mess, this higher is the job security</small>
 					</aside>
 				</section>
-				<section data-background="./img/knock.jpg">
+				<section data-background="./img/sheldon.gif">
 					<h2 class="fragment highlight-red">Redux</h2>
 					<p>Will start knocking at your door</p>
 					<aside class="notes">
@@ -330,17 +341,23 @@
 					<h2>Create Component without interactions</h2>
 				</section>
 				<section>
-					<h4>Data you have...</h4>
-					<div class="fragment">
-						<p></p>
-						<ul>
-							<li>Original list of products</li>
-							<li>Search text the user has entered</li>
-							<li>Value of the checkbox</li>
-							<li>Filtered list of products</li>
-						</ul>
-					</div>
-					<img src="./img/mockup.png" alt="">
+					<h2>Data you have...</h2>
+					<table>
+						<tr>
+							<td>
+								<ul>
+									<li>Original list of products</li>
+									<li class="fragment">Search text the user has entered</li>
+									<li class="fragment">Value of the checkbox</li>
+									<li class="fragment">Filtered list of products</li>
+								</ul>
+							</td>
+							<td>
+								<img src="./img/mockup.png" alt="">
+							</td>
+						</tr>
+					</table>
+
 				</section>
 				<section>
 					<h4>Identify Minimal (but complete) UI State</h4>
@@ -360,9 +377,9 @@
 
 					<ul>
 						<li>Products is passed in as props: not state</li>
-						<li>Filtered product can be computed via search text and checkbox: not state</li>
-						<li>Search text user can entered: state</li>
-						<li>Value in the checkbox: state</li>
+						<li class="fragment">Filtered product can be computed via search text and checkbox: not state</li>
+						<li class="fragment">Search text user can entered: state</li>
+						<li class="fragment">Value in the checkbox: state</li>
 					</ul>
 					<img src="./img/mockup.png" alt="">
 				</section>
@@ -388,7 +405,7 @@
 					</ul>
 					<p>
 						<small>
-							<a href="https://codepen.io/gaearon/pen/LzWZvb?editors=0010">code pen</a>
+							<a target="_blank" href="https://codepen.io/gaearon/pen/LzWZvb?editors=0010">working code</a>
 						</small>
 					</p>
 				</section>
@@ -433,10 +450,10 @@ class MyComponent extends Component {
 				</section>
 				<section>
 					<pre><code>
-							render() {
-								const excitedMessage = this.props.message + "!";
-								return (<div>{excitedMessage}</div>);
-							  }
+render() {
+	const excitedMessage = this.props.message + "!";
+	return (<div>{excitedMessage}</div>);
+}
 					</code></pre>
 				</section>
 				<section>
