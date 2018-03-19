@@ -47,7 +47,7 @@ class MyShop extends Component {
     render() {
         return (
             <ul>
-                {this.state.products.map(product => (
+                { this.state.products.map(product => (
                     <li key={product.id}>
                         {product.name}
                         <button onClick={e => this.toggleProductInOrder(product)}>

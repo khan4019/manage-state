@@ -59,10 +59,10 @@
 			<section>
 				<h2>We will cover</h2>
 				<ol>
-					<li>Explore State</li>
+					<li>What is State</li>
 					<li>Manage state in react</li>
-					<li>State without Redux</li>
-					<li>Manage state by using Redux</li>
+					<li>State with local storage</li>
+					<li>Redux</li>
 					<li>Redux-saga</li>
 					<li>Other options to manage state</li>
 				</ol>
@@ -78,12 +78,13 @@
 						<li>It's summer time</li>
 						<li>You are sitting by the lake</li>
 						<li>Under a large beach umbrella</li>
-						<li>And your husband is grilling some bacon</li>
+						<li>And your husband is grilling some steak</li>
 					</ul>
 					<br>
 					<br>
 					<p class="fragment">Your state is:
-						<strong>pretty relaxed</strong>. </p>
+						<strong class="fragment  highlight-green">pretty relaxed</strong>
+					</p>
 				</section>
 				<section>
 					<h2>Think for another second...</h2>
@@ -97,7 +98,8 @@
 					<br>
 					<br>
 					<p class="fragment">Your state is:
-						<strong>pretty nervous</strong>.</p>
+						<strong class="fragment  highlight-red">pretty nervous</strong>
+					</p>
 					<p class="fragment">
 						<small>This means state of your mind changes based on the situation</small>
 					</p>
@@ -108,8 +110,8 @@
 					<ul class="fragment">
 						<li>That might change</li>
 						<li>Like: your mood, your confidence level</li>
-						<li>like state of water: ice, water, stream</li>
-						<li>or emotion about your partner</li>
+						<li>Like state of water: ice, water, stream</li>
+						<li>Or your feelings about your partner</li>
 					</ul>
 				</section>
 				<section>
@@ -127,7 +129,7 @@
 					</ol>
 					<br>
 					<p class="fragment">
-						<small>All the stored information, at a given instant in time, is called the application state.</small>
+						<small>All the stored information, at a given instant in time, creates the application state.</small>
 					</p>
 				</section>
 				<section>
@@ -137,7 +139,7 @@
 						<li class="fragment">Application State: Global State
 							<ul>
 								<li>Like: Session storage/ Database/others</li>
-								<li>Think it like a database</li>
+								<li>Simply think it like a database</li>
 								<li>Any component, anywhere in the app can access</li>
 							</ul>
 						</li>
@@ -183,7 +185,8 @@
 			</section>
 			<section>
 				<section>
-					<h2>Adding more features...</h2>
+					<p>Your manager tells you to</p>
+					<h2>Add more features...</h2>
 				</section>
 				<section>
 					<h4>More features mean...</h4>
@@ -193,11 +196,12 @@
 						<li class="fragment">State grows and becomes complicated</li>
 						<li class="fragment">More event handler has to be managed</li>
 						<br>
-						<li class="fragment"> more mess...</li>
+						<li class="fragment"> And you create more mess...</li>
 					</ul>
-					<aside class="notes">
-						<small>But Don't worry the bigger is the mess, this higher is the job security</small>
-					</aside>
+					<br>
+					<p class="fragment">
+						<small>But Don't worry: the bigger is the mess, this higher is the job security</small>
+					</p>
 				</section>
 				<section data-background="./img/sheldon.gif">
 					<h2 class="fragment highlight-red">Redux</h2>
@@ -209,7 +213,7 @@
 				<section>
 					<h2>Redux will ask you</h2>
 					<ul>
-						<li>Put state out of your component</li>
+						<li>Put app state out of your component</li>
 						<li class="fragment">Create state as plain objects and arrays</li>
 						<li class="fragment">Describe changes as plain objects.</li>
 						<li class="fragment">Handling changes as pure functions.</li>
@@ -264,7 +268,7 @@
 					<ul>
 						<li>Think in React</li>
 						<li>Leverage
-							<a href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux">
+							<a target="_blank" href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux">
 								Local storage</a>
 						</li>
 						<li class="fragment">You can apply ideas from Redux without using it</li>
@@ -281,7 +285,7 @@
 			</section>
 			<section>
 				<section>
-					<h5>Option-1</h5>
+					<h5>use case-1</h5>
 					<h2>Think in React</h2>
 					<p>When you are building from scratch</p>
 				</section>
@@ -420,17 +424,20 @@
 					</ol>
 				</section>
 				<section>
-					<h1>Some Fun</h1>
+					<h2>Quiz</h2>
+					<p class="fragment">Who was the guy knocking at the door?</p>
+					<img src="./img/knock.jpg" alt="" class="fragment">
 				</section>
 			</section>
 			<section>
 				<section>
-					<h5>Case-2</h5>
-					<h2>Already Created a Mess</h2>
-					<p>When you are building from scratch</p>
+					<h5>use Case-2</h5>
+					<h2>About to Created a Mess</h2>
+					<p>When you need to Share state</p>
 				</section>
 				<section>
-					<h2>Do you need a state here?</h2>
+					<h2>Assess your current states</h2>
+					<p>Are you using states where you don't have to?</p>
 					<pre><code>
 class MyComponent extends Component {
   constructor(props) {
@@ -451,23 +458,107 @@ class MyComponent extends Component {
 				<section>
 					<pre><code>
 render() {
-	const excitedMessage = this.props.message + "!";
-	return (<div>{excitedMessage}</div>);
+  const excitedMessage = this.props.message + "!";
+  return (<div>{excitedMessage}</div>);
 }
 					</code></pre>
 				</section>
 				<section>
-					<h2>Look at my shop component</h2>
-					<p>Code here:</p>
-					<ul>
-						<li>Avoid changing data you get from the API if it results in data-juggling for updates.</li>
-						<li>Avoid storing data in this.state if it isn’t relevant for rendering</li>
-						<li></li>
-						<li></li>
-					</ul>
+					<h4>Are you changing data you get from the API</h4>
+					<pre><code class="hljs jsx" data-trim contenteditable>
+componentWillMount() {
+  Promise.all([
+    api.shop.getProducts(),
+    api.shop.getCurrentOrder()
+  ]).then(([products, order]) => {
+    // Get the ids of all the products that are in my order now
+    const orderProductIds = order.products.map(p => p.id);
+    // Set a "selected" flag on the item in the list of all products
+    const uiProducts = products.map(p => {
+      const selected = orderProductIds.indexOf(p.id) !== -1;
+      return { ...p, selected };
+    });
+    this.setState({ products: uiProducts, order });
+  });
+}
+					</code></pre>
 				</section>
 				<section>
-					<h2>Get more code from here</h2>
+					<h4>Processing data becomes challenging</h4>
+					<pre><code class="hljs" data-trim contenteditable>
+toggleProductInOrder(product) {
+  // Take all our products, flip the selected one,
+  // and get a new list to send to the server
+  const newProducts = this.state.products.map(p => {
+    if (product.id !== p.id) { return p; }
+    return { ...p, selected: !p.selected };
+  });
+  // Filter out the selected products
+  const newOrderProducts = newProducts.filter(p => p.selected);
+  const updatedOrder = { ...this.state.order, products: newOrderProducts };
+  // Update both the order and the products
+  return api.shop.updateOrder(updatedOrder)
+    .then(newOrder => {
+      this.setState({ order: newOrder, products: newProducts });
+    });
+}
+					</code></pre>
+				</section>
+				<section>
+					<h4>Can you just data from server as needed</h4>
+					<pre><code class="hljs javascript es6" data-trim contenteditable>
+componentWillMount() {
+  Promise.all([
+    api.shop.getProducts(),
+    api.shop.getCurrentOrder()
+  ]).then(([products, order]) => {
+    // Benefit 1: No pre-processing of our data from the server
+    this.setState({ products, order });
+  });
+}
+					</code></pre>
+				</section>
+				<section>
+					<pre><code class="hljs" data-trim contenteditable>
+							toggleProductInOrder(product) {
+							  const { products, order } = this.state;
+							  const selectedProduct = this.getSelected(product);							
+							  // Benefit 2: Updating an order is just adding or removing on item
+							  const updatedOrder = !selectedProduct
+							   ? { ...order, products: concat(order.products, product) }
+							   : { ...order, products: without(order.products, product) };							
+							  return api.shop.updateOrder(updatedOrder)
+							    .then(newOrder => {
+							    // Benefit 3: After updating the order, just chang the state
+							      this.setState({ order: newOrder });
+							    });
+							  }							
+							  getSelected(product) {
+								return this.state.order.products.find(p => p.id === product.id);
+							  }
+					</code></pre>
+				</section>
+				<section>
+					<h2>Composable function React</h2>
+					<h2>Google it</h2>
+				</section>
+				<section>
+					<h2>Higher order component</h2>
+				</section>
+				<section>
+					<h2>Local Storage</h2>
+				</section>
+				<section>
+					<h2>Summary</h2>
+					<ul>
+						<li>Avoid storing data in
+							<code>this.state</code> which can be calculated from props</li>
+						<li>Avoid storing data in
+							<code>this.state</code> which can be calculated from other state</li>
+						<li>Avoid changing data you get from the API if it results in data-juggling for updates.</li>
+						<li>Avoid storing data in
+							<code>this.state</code> if it isn’t relevant for rendering</li>
+					</ul>
 					<br>
 					<br>
 					<p>
@@ -476,12 +567,16 @@ render() {
 						</small>
 					</p>
 				</section>
+				<section>
+					<h2>Quiz</h2>
+
+				</section>
 			</section>
 			<section>
 				<section>
-					<h5>Case-3</h5>
-					<h2>Redux</h2>
-					<p>When you are building from scratch</p>
+					<h5>use Case-3</h5>
+					<h2>State management library: Redux</h2>
+					<p>When you need to share state a lot</p>
 				</section>
 				<section>
 					<h2>How we manage state</h2>
@@ -498,15 +593,12 @@ render() {
 				<section>
 					<img src="./img/redux/componentTree5.png" alt="">
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>What if we put them in one place</h2>
 				</section>
 				<section>
 					<img src="./img/redux/centralState1.png" alt="">
 				</section>
-
 				<section>
 					<img src="./img/redux/centralState3.png" alt="">
 				</section>
@@ -527,9 +619,6 @@ render() {
 				<section>
 					<img src="./img/redux/solve2.png" alt="">
 				</section>
-
-			</section>
-			<section>
 				<section>
 					<h2>How will we change the state?</h2>
 				</section>
@@ -557,8 +646,6 @@ render() {
 				<section>
 					<img src="./img/redux/centralState7.png" alt="">
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>But you didn't tell how state will change?</h2>
 				</section>
@@ -616,8 +703,6 @@ case ADD_TODO:
 						<li class="fragment">Store saves the complete state tree returned by the root reducer</li>
 					</ul>
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>Basic Building Block</h2>
 					<ul>
@@ -724,7 +809,9 @@ npm install --save react-redux
 			</section>
 			<section>
 				<section>
-					<h1>Redux Saga</h1>
+					<h5>use case-4</h5>
+					<h2>Redux Saga</h2>
+					<p>When you need to handle async call with Redux</p>
 				</section>
 				<section>
 					<h2>Redux-saga</h2>
@@ -747,8 +834,6 @@ npm install --save react-redux
 					</ul>
 					<!-- <small class="hide">easier to manage, more efficient to execute, simple to test, and better at handling failures.</small> -->
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>ES6 Generator</h2>
 					<pre class="hljs javascript"><code data-trim>
@@ -890,30 +975,36 @@ npm install --save react-redux
 				</section>
 			</section>
 			<section>
-				<h2>Free tip</h2>
-
-			</section>
-			<section>
 				<section>
-					<h2>Learn React</h2>
-					<p>Day long Hand's on
-						<a href="https://github.com/hakimel/reveal.js#speaker-notes">workshop</a>
-					</p>
-					<img src="./img/workshop.jpg" alt="">
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
-						window (hit 's' on your keyboard).
-					</aside>
+						<h2>Free tip</h2>
 				</section>
-				<section style="text-align: left;">
-					<h1>Thank you</h1>
-					<p>
-						-
-						<a href="https://slides.com">Try the online editor</a>
-						<br> -
-						<a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+				<section>
+					
 				</section>
+			</section>
+
+			<section>
+				<h2>Learn React</h2>
+				<p>Day long Hand's on
+					<a href="https://github.com/hakimel/reveal.js#speaker-notes">workshop</a>
+				</p>
+				<img src="./img/workshop.jpg" alt="">
+				<aside class="notes">
+					Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes
+					window (hit 's' on your keyboard).
+				</aside>
+			</section>
+			<section style="text-align: left;">
+				<h1>Thank you</h1>
+				<p>
+					-Workshop:
+					<a href="">Khan4019@gmail.com</a>
+					<br> -Slides:
+					<a href="https://khan4019.github.io/manage-state/index.html">khan4019.github.io/manage-state/index.html</a>
+					<br> -Intern:
+					<a href="">karina.islam0@gmail.com</a>
+				</p>
+			</section>
 
 		</div>
 
