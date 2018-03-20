@@ -234,7 +234,7 @@
 							<strong class="fragment highlight-red"> worse</strong>
 						</li>
 					</ul>
-					<p class="fragment">Is redux is a must?</p>
+					<p class="fragment">Is redux a must?</p>
 					<aside class="notes">
 						<h2>Question arises...</h2>
 						<p>Answer is: you dont have to</p>
@@ -659,8 +659,8 @@ componentWillMount() {
 					</ul>
 					<pre><code class="hljs JavaScript">
 {
-	type: 'ADD_TODO',
-	text: 'Take 8 bathroom breaks'
+  type: 'ADD_TODO',
+  text: 'Take 8 bathroom breaks'
 }
 						</code></pre>
 					<li class="fragment">dispatch action</li>
@@ -680,7 +680,7 @@ componentWillMount() {
 					<h4 class="fragment">we will create a new state with the change</h4>
 					<pre class="hljs JavaScript fragment"><code>
 function add(x, y){
-	return x + y;
+  return x + y;
 }
 						</code></pre>
 					<pre class="hljs JavaScript fragment" data-trim><code>
@@ -706,12 +706,12 @@ add(1, 2); // WILL ALWAYS output 3
 					</ul>
 					<pre class="hljs javascript"><code>
 case ADD_TODO:
-	return [
-	...state,
-	{
-		text: action.text,
-		completed: false
-	}
+  return [
+  ...state,
+  {
+    text: action.text,
+    completed: false
+  }
 ]
 						</code></pre>
 				</section>
@@ -738,12 +738,8 @@ case ADD_TODO:
 						<li>Reducer</li>
 					</ul>
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>Implement Redux</h2>
-				</section>
-				<section>
 					<pre><code class="hljs javascript">
 npm install --save redux
 npm install --save react-redux
@@ -759,6 +755,14 @@ npm install --save react-redux
 				</section>
 				<section>
 					<img src="./img/redux/smartcompoent.png" alt="">
+				</section>
+				<section>
+					<h2>See some code</h2>
+					<p><a href="https://github.com/khan4019/redux-todo">github.com/khan4019/redux-todo</a></p>
+				</section>
+				<section>
+					<h2>Quiz</h2>
+					<p class="fragment">Since Illinois is a state, how will you change this state?</p>
 				</section>
 			</section>
 			<section>
@@ -871,7 +875,7 @@ npm install --save react-redux
 	  yield 5;
 	}
 						</code></pre>
-					<pre class="fragment hljs javascript"><code>
+					<pre class="fragment hljs javascript"><code data-trim>
 	var fooed = foo();
 	fooed.next(); //{value: 1, done: false}	
 	fooed.next(); //{value: 2, done: false}	
@@ -909,8 +913,8 @@ npm install --save react-redux
 					<pre class="hljs javascript"><code data-trim>
 	function* loadUser() {
 	  try {
-		//1st step: call getUser,  then assign value to user
-		const user = yield call(fetch, '/getUser', { method: 'GET' });
+	    //1st step: call getUser,  then assign value to user
+	    const user = yield call(fetch, '/getUser', { method: 'GET' });
 		
 	   //2nd step: dispatch action
 	   yield put({type: 'FETCH_USER_SUCCESS', payload: user});
