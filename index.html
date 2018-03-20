@@ -234,7 +234,7 @@
 							<strong class="fragment highlight-red"> worse</strong>
 						</li>
 					</ul>
-					<p class="fragment">Is redux is a must?</p>
+					<p class="fragment">Is redux a must?</p>
 					<aside class="notes">
 						<h2>Question arises...</h2>
 						<p>Answer is: you dont have to</p>
@@ -431,13 +431,13 @@
 			</section>
 			<section>
 				<section>
-					<h5>use Case-2</h5>
-					<h2>About to Created a Mess</h2>
+					<h5>use Case - 2</h5>
+					<h2>You have a little mess</h2>
 					<p>When you need to Share state</p>
 				</section>
 				<section>
 					<h2>Assess your current states</h2>
-					<p>Are you using states where you don't have to?</p>
+
 					<pre><code>
 class MyComponent extends Component {
   constructor(props) {
@@ -454,8 +454,12 @@ class MyComponent extends Component {
   }
 }
 					</code></pre>
+					<p class="fragment">
+						<small>Are you using states where you don't have to?</small>
+					</p>
 				</section>
 				<section>
+					<p>Just read from the props</p>
 					<pre><code>
 render() {
   const excitedMessage = this.props.message + "!";
@@ -538,26 +542,46 @@ componentWillMount() {
 							  }
 					</code></pre>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>Composable function React</h2>
 					<h2>Google it</h2>
-				</section>
+				</section> -->
 				<section>
 					<h2>Higher order component</h2>
+					
+					<ol>
+						<li>Divide components into containers and presenters</li>
+						<li >Pass callbacks to hand as state change in children</li>
+						<li >State sharing components in container</li>
+					</ol>
+					<br>
+					<br>
+					<p> <a target="_blank" href="https://reactjs.org/docs/lifting-state-up.html">Lifting up state</a></p>
+					<pre class="hide"><code class="hljs javaScript jsx" data-trim>
+					class Container extends Component {
+					  state = { text: 'foo' }
+					  changeText = newText => this.setState({text: newText})
+					  render() {
+					    return(&lt;div&gt;
+					       <Presenter1 text={this.state.text} changeText={this.changeText} />
+					       <Presenter2 text={this.state.text} />
+					    &lt;div&gt;)
+					    }
+					}
+					</code></pre>
 				</section>
 				<section>
 					<h2>Local Storage</h2>
+					<br><br>
+					<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
 				</section>
 				<section>
 					<h2>Summary</h2>
 					<ul>
 						<li>Avoid storing data in
 							<code>this.state</code> which can be calculated from props</li>
-						<li>Avoid storing data in
-							<code>this.state</code> which can be calculated from other state</li>
-						<li>Avoid changing data you get from the API if it results in data-juggling for updates.</li>
-						<li>Avoid storing data in
-							<code>this.state</code> if it isn’t relevant for rendering</li>
+						<li>Try not to change data you get from server </li>
+						<li>Lift up state to use higher order component</li>
 					</ul>
 					<br>
 					<br>
@@ -569,13 +593,15 @@ componentWillMount() {
 				</section>
 				<section>
 					<h2>Quiz</h2>
-
+					<br><br>
+					<p class="fragment">What's the name of the other speaker?</p>
 				</section>
 			</section>
 			<section>
 				<section>
 					<h5>use Case-3</h5>
-					<h2>State management library: Redux</h2>
+					<h3>State management library: Redux</h3>
+					<br>
 					<p>When you need to share state a lot</p>
 				</section>
 				<section>
@@ -633,8 +659,8 @@ componentWillMount() {
 					</ul>
 					<pre><code class="hljs JavaScript">
 {
-	type: 'ADD_TODO',
-	text: 'Take 8 bathroom breaks'
+  type: 'ADD_TODO',
+  text: 'Take 8 bathroom breaks'
 }
 						</code></pre>
 					<li class="fragment">dispatch action</li>
@@ -654,7 +680,7 @@ componentWillMount() {
 					<h4 class="fragment">we will create a new state with the change</h4>
 					<pre class="hljs JavaScript fragment"><code>
 function add(x, y){
-	return x + y;
+  return x + y;
 }
 						</code></pre>
 					<pre class="hljs JavaScript fragment" data-trim><code>
@@ -680,12 +706,12 @@ add(1, 2); // WILL ALWAYS output 3
 					</ul>
 					<pre class="hljs javascript"><code>
 case ADD_TODO:
-	return [
-	...state,
-	{
-		text: action.text,
-		completed: false
-	}
+  return [
+  ...state,
+  {
+    text: action.text,
+    completed: false
+  }
 ]
 						</code></pre>
 				</section>
@@ -712,12 +738,8 @@ case ADD_TODO:
 						<li>Reducer</li>
 					</ul>
 				</section>
-			</section>
-			<section>
 				<section>
 					<h2>Implement Redux</h2>
-				</section>
-				<section>
 					<pre><code class="hljs javascript">
 npm install --save redux
 npm install --save react-redux
@@ -733,6 +755,14 @@ npm install --save react-redux
 				</section>
 				<section>
 					<img src="./img/redux/smartcompoent.png" alt="">
+				</section>
+				<section>
+					<h2>See some code</h2>
+					<p><a href="https://github.com/khan4019/redux-todo">github.com/khan4019/redux-todo</a></p>
+				</section>
+				<section>
+					<h2>Quiz</h2>
+					<p class="fragment">Since Illinois is a state, how will you change this state?</p>
 				</section>
 			</section>
 			<section>
@@ -845,7 +875,7 @@ npm install --save react-redux
 	  yield 5;
 	}
 						</code></pre>
-					<pre class="fragment hljs javascript"><code>
+					<pre class="fragment hljs javascript"><code data-trim>
 	var fooed = foo();
 	fooed.next(); //{value: 1, done: false}	
 	fooed.next(); //{value: 2, done: false}	
@@ -883,8 +913,8 @@ npm install --save react-redux
 					<pre class="hljs javascript"><code data-trim>
 	function* loadUser() {
 	  try {
-		//1st step: call getUser,  then assign value to user
-		const user = yield call(fetch, '/getUser', { method: 'GET' });
+	    //1st step: call getUser,  then assign value to user
+	    const user = yield call(fetch, '/getUser', { method: 'GET' });
 		
 	   //2nd step: dispatch action
 	   yield put({type: 'FETCH_USER_SUCCESS', payload: user});
@@ -976,10 +1006,10 @@ npm install --save react-redux
 			</section>
 			<section>
 				<section>
-						<h2>Free tip</h2>
+					<h2>Free tip</h2>
 				</section>
 				<section>
-					
+
 				</section>
 			</section>
 
