@@ -152,6 +152,7 @@
 							</ul>
 						</li>
 					</ol>
+					<p><small><a href="https://codeburst.io/how-to-manage-ui-state-with-redux-24deb6cf0d57">React States</a></small></p>
 				</section>
 				<!-- <section>
 					<h2>Stateless</h2>
@@ -395,6 +396,13 @@
 						<li class="fragment">Put state in the common owner in the higher up</li>
 						<li class="fragment">If you don't find a common owner, create one</li>
 					</ol>
+					<br>
+					<p><small><a href="https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c">Handle state in React</a></small></p>
+				</section>
+				<section>
+					<img src="./img/state.jpg" alt="">
+					<br>
+					<p><small><a href="https://twitter.com/dan_abramov/status/749710501916139520/photo/1">should be state or not</a></small></p>
 				</section>
 				<section>
 					<h2>Where to put the state</h2>
@@ -759,10 +767,66 @@ npm install --save react-redux
 				<section>
 					<h2>See some code</h2>
 					<p><a href="https://github.com/khan4019/redux-todo">github.com/khan4019/redux-todo</a></p>
+					<br><br>
+					<p><small><a href="https://chariotsolutions.com/blog/post/react-application-state-management-with-redux/">state management</a></small></p>
 				</section>
 				<section>
 					<h2>Quiz</h2>
 					<p class="fragment">Since Illinois is a state, how will you change this state?</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h5>Use case -4</h5>
+					<h2>Scale with Redux</h2>
+					<p>When you are building really large App</p>
+				</section>
+				<section>
+					<h2>Redux is good..</h2>
+					<ol>
+						<li>Keep an history of your app</li>
+						<li>Time-travel over the actions </li>
+						<li>Even store the app state in the local storage</li>
+					</ol>
+					<p class="fragment">But it's not a silver bullet</p>
+					
+					<aside class="notes">
+							<p>When you have issues with your Redux state, chances are you may have issues maintaining your entire application </p>
+					</aside>
+				</section>
+				<section>
+					<h2>Messed up with Redux</h2>
+					<ul class="fragment">
+							<li>Do you have too many global action creators?</li>
+							<li>Do you have a huge reducer that manages everything?</li>
+							<li>Do you have conflicts between your actions or reducers that modify the same piece of state?</li>
+						</ul>					
+					<aside class="notes">
+						<p>You can tell when an application has a good architecture when it’s divided into several small features that can be easily extracted and published on a package manager and reused by another application</p>
+						<p>. If you decide you want to remove an entire feature of your app, you can simply unplug it and delete that entire folder which contains the container and presentational components, reducers, actions, resources etc, and you know it will be fine because the state is not coupled to any other feature. Quick, clean and easy.</p>
+					</aside>
+					<p><small><a href="https://medium.com/@alexmngn/how-to-use-redux-on-highly-scalable-javascript-applications-4e4b8cb5ef38">redux scaleable architecure</a></small></p>
+				</section>
+				<section>
+					<h2>Consider</h2>
+					<ul class="fragment">
+							<li>Redux actions creators and reducers with feature</li>
+							<li>Create Data module for data that is not tightly bound to a container component</li>						
+						</ul>
+					<ul>
+							<li class="fragment">Put distinct domains into sub-store and slide reducers</li>
+							<div class="fragment">
+									<li>Isolate network communication in one place</li>
+									<li>Use Redux-saga or thunk and rest of the code is easily testable</li>
+							</div>
+							<div class="fragment">
+									<li>Use selector functions to pass bits of state to components</li>
+									<li>consider using reselect (memoization) to optimize their performance</li>
+							</div>
+					</ul>
+					<br><br>
+					<p><small><a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a></small></p>
+					<p><small><a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a></small></p>
 				</section>
 			</section>
 			<section>
@@ -839,7 +903,7 @@ npm install --save react-redux
 			</section>
 			<section>
 				<section>
-					<h5>use case-4</h5>
+					<h5>use case-5</h5>
 					<h2>Redux Saga</h2>
 					<p>When you need to handle async call with Redux</p>
 				</section>
