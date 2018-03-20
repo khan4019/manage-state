@@ -78,7 +78,7 @@
 						<li>It's summer time</li>
 						<li>You are sitting by the lake</li>
 						<li>Under a large beach umbrella</li>
-						<li>And your husband is grilling some steak</li>
+						<li>And your friend is grilling some steak</li>
 					</ul>
 					<br>
 					<br>
@@ -91,7 +91,7 @@
 					<br>
 					<ul class="fragment">
 						<li>You are in a meetup</li>
-						<li>Talking in front of 50+ people</li>
+						<li>Talking in front of 30+ people</li>
 						<li>Trying to explain what is state</li>
 						<li>Everyone is staring at you</li>
 					</ul>
@@ -169,20 +169,6 @@
 						<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
 					</h6>
 				</section>
-				<section>
-					<img src="./img/ema-john0.png" alt="">
-					<p class="fragment">
-						<small>Can you spot some state here?</small>
-					</p>
-				</section>
-				<section>
-					<h2>Component State</h2>
-					<img src="./img/ema-john0.png" alt="">
-				</section>
-				<section>
-					<h2>Global State</h2>
-					<img src="./img/ema-john.png" alt="">
-				</section>
 			</section>
 			<section>
 				<section>
@@ -194,8 +180,8 @@
 					<ul class="fragment">
 						<li>More components</li>
 						<li>More data, more props has to pass data</li>
-						<li class="fragment">State grows and becomes complicated</li>
 						<li class="fragment">More event handler has to be managed</li>
+						<li class="fragment">State grows and becomes complicated</li>
 						<br>
 						<li class="fragment"> And you create more mess...</li>
 					</ul>
@@ -327,11 +313,11 @@
 				<section>
 					<h2>Name your components</h2>
 					<ol>
-						<li>FilterableProductTable (orange)</li>
-						<li>SearchBar (blue)</li>
-						<li>ProductTable (green) </li>
-						<li>ProductCategoryRow (turquoise)</li>
 						<li>ProductRow (red)</li>
+						<li>ProductCategoryRow (turquoise)</li>
+						<li>ProductTable (green) </li>
+						<li>SearchBar (blue)</li>
+						<li>FilterableProductTable (orange)</li>
 					</ol>
 					<img src="./img/mockup-component.png" alt="" class="fragment">
 					<aside class="notes">
@@ -386,7 +372,7 @@
 						<li class="fragment">Search text user can entered: state</li>
 						<li class="fragment">Value in the checkbox: state</li>
 					</ul>
-					<img src="./img/mockup.png" alt="">
+					<img src="./img/mockup-component.png" alt="">
 				</section>
 				<section>
 					<h2>Where to put the state</h2>
@@ -614,6 +600,7 @@ componentWillMount() {
 				</section>
 				<section>
 					<h2>How we manage state</h2>
+					<h5>In React</h5>
 				</section>
 				<section>
 					<img src="./img/redux/componentTree1.png" alt="">
@@ -684,7 +671,7 @@ componentWillMount() {
 					<h2>But you didn't tell how state will change?</h2>
 				</section>
 				<section>
-					<h2 style="color:red">Actually state will not change</h2>
+					<h2 style="color:yellow">Actually state will not change</h2>
 					<h4 class="fragment">we will create a new state with the change</h4>
 					<pre class="hljs JavaScript fragment"><code>
 function add(x, y){
@@ -789,6 +776,8 @@ npm install --save react-redux
 						<li>Even store the app state in the local storage</li>
 					</ol>
 					<p class="fragment">But it's not a silver bullet</p>
+					<br>
+					<p><small><a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux Dev tool</a></small></p>
 					
 					<aside class="notes">
 							<p>When you have issues with your Redux state, chances are you may have issues maintaining your entire application </p>
@@ -814,7 +803,7 @@ npm install --save react-redux
 							<li>Create Data module for data that is not tightly bound to a container component</li>						
 						</ul>
 					<ul>
-							<li class="fragment">Put distinct domains into sub-store and slide reducers</li>
+							<li class="fragment">Put distinct domains into sub-store and split reducers</li>
 							<div class="fragment">
 									<li>Isolate network communication in one place</li>
 									<li>Use Redux-saga or thunk and rest of the code is easily testable</li>
@@ -828,6 +817,14 @@ npm install --save react-redux
 					<p><small><a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a></small></p>
 					<p><small><a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a></small></p>
 				</section>
+				<!-- <section>
+					<p>Is Redux more performant? No. In fact, it gets slightly slower with each new action that must be handled.</p>
+					<p>
+						Is Redux simpler? Certainly not.</p>
+						<p><a href="https://twitter.com/tjholowaychuk/status/957853652483416064">simple state</a></p>
+						<br>
+						<p><a href="https://hackernoon.com/redesigning-redux-b2baee8b8a38">Redesigning Redux</a></p>
+				</section> -->
 			</section>
 			<section>
 				<section>
@@ -890,6 +887,9 @@ npm install --save react-redux
 						<li>
 							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Unstated</a>,
 							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Explore unstated</a>
+						</li>
+						<li>
+							<a href="https://hackernoon.com/redesigning-redux-b2baee8b8a38">Rematch: Redux best practices without the boilerplate</a>
 						</li>
 						<li>
 							<a href="">Local Storage</a>
@@ -1032,7 +1032,7 @@ npm install --save react-redux
 						<li>Testing Saga</li>
 					</ul>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>Pros and Cons</h2>
 					<ul>
 						<li>Saga: easy to test sagas as call() returns a pure object</li>
@@ -1048,7 +1048,7 @@ npm install --save react-redux
 					<p>
 						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">saga vs thunk</a>
 					</p>
-				</section>
+				</section> -->
 				<section>
 					<h2>References</h2>
 					<ul>
@@ -1073,7 +1073,18 @@ npm install --save react-redux
 					<h2>Free tip</h2>
 				</section>
 				<section>
-
+					<p>Tight on food budget</p>
+					<img class="fragment" src="./img/banana.jpg" alt="">
+				</section>
+				<section>
+					<img src="./img/banana-single.jpg" alt="">
+				</section>
+				<section>
+					<p>Want to save even more...</p>
+					<img class="fragment" src="./img/meetup.jpg" alt="">
+				</section>
+				<section>
+					<img src="./img/gym.jpg" alt="">
 				</section>
 			</section>
 
@@ -1094,7 +1105,7 @@ npm install --save react-redux
 					-Workshop:
 					<a href="">Khan4019@gmail.com</a>
 					<br> -Slides:
-					<a href="https://khan4019.github.io/manage-state/index.html">khan4019.github.io/manage-state/index.html</a>
+					<a href="https://khan4019.github.io/manage-state/index.html">khan4019.github.io/manage-state</a>
 					<br> -Intern:
 					<a href="">karina.islam0@gmail.com</a>
 				</p>
