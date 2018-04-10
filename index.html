@@ -296,110 +296,6 @@
 					</p>
 				</section>
 				<section>
-					<h3> Identify Component Hierarchy</h3>
-					<ul class="fragment">
-						<li>Draw boxes around component</li>
-						<li>Use Single responsibility principle</li>
-						<li>One component should ideally do one thing</li>
-					</ul>
-					<img src="./img/mockup-component3.png" alt="" class="fragment">
-					<aside class="notes">
-						<p> draw boxes around every component (and subcomponent) </p>
-						<p>What should be a compoent</p>
-						<p>use single responsibility principle,</p>
-						<p>that is, a component should ideally only do one thing. </p>
-						<small>If it ends up growing, it should be decomposed into smaller subcomponents.</small>
-					</aside>
-				</section>
-				<section>
-					<h2>Name your components</h2>
-					<ol>
-						<li>ProductRow (red)</li>
-						<li>ProductCategoryRow (turquoise)</li>
-						<li>ProductContainer (green) </li>
-						<li>SearchBar (blue)</li>
-						<li>FilterableProductContainer (orange)</li>
-					</ol>
-					<img src="./img/mockup-component3.png" alt="" class="fragment">
-					<aside class="notes">
-						FilterableProductContainer (orange): contains the entirety of the example
-						<br> SearchBar (blue): receives all user input
-						<br> ProductContainer (green): displays and filters the data collection based on user input
-						<br> ProductCategoryRow (turquoise): displays a heading for each category
-						<br> ProductRow (red): displays a row for each product
-					</aside>
-				</section>
-				<!-- <section>
-					<h2>Create Component without interactions</h2>
-				</section> -->
-				<section>
-					<h2>Data you have...</h2>
-					<table>
-						<tr>
-							<td>
-								<ul>
-									<li>Original list of products</li>
-									<li class="fragment">Search text the user has entered</li>
-									<li class="fragment">Value of the checkbox</li>
-									<li class="fragment">Filtered list of products</li>
-								</ul>
-							</td>
-							<td>
-								<img src="./img/mockup3.png" alt="">
-							</td>
-						</tr>
-					</table>
-
-				</section>
-				<section>
-					<h4>Identify Minimal (but complete) UI State</h4>
-					<p class="fragment highlight-red">It's not a React state if...</p>
-					<div class="fragment">
-
-						<ol>
-							<li>Just passed from parent via props</li>
-							<li>Remain unchanged over time</li>
-							<li>Can be computed by using other state/props</li>
-						</ol>
-					</div>
-				</section>
-				<section>
-					<h2>Assess your current states</h2>
-
-					<pre><code>
-class MyComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { message: props.message + "!" };
-  }
-  componentWillReceiveProps(props) {
-    this.setState({ message: props.message + "!" });
-  }
-  render() {
-    return (
-      <div>{this.state.message}</div>
-    );
-  }
-}
-					</code></pre>
-					<p class="fragment">
-						<small>Are you using states where you don't have to?</small>
-					</p>
-				</section>
-				<section>
-					<p>Just read from the props</p>
-					<pre><code>
-render() {
-  const excitedMessage = this.props.message + "!";
-  return (<div>{excitedMessage}</div>);
-}
-					</code></pre>
-					<br>
-					<p class="fragment">
-						<small>Avoid using state for data which can be calculated from props or other state</small>
-					</p>
-				</section>
-				<section>
 					<h4>Are you changing data you get from the API</h4>
 					<pre><code class="hljs jsx" data-trim contenteditable>
 componentWillMount() {
@@ -514,6 +410,114 @@ render() {
 					<h2>Composable function React</h2>
 					<h2>Google it</h2>
 				</section> -->
+				<section>
+					<h2>What if you can</h2>
+					<h4>Recreate the wheel</h4>
+				</section>
+				<section>
+						<h3> Identify Component Hierarchy</h3>
+						<ul class="fragment">
+							<li>Draw boxes around component</li>
+							<li>Use Single responsibility principle</li>
+							<li>One component should ideally do one thing</li>
+						</ul>
+						<img src="./img/mockup-component3.png" alt="" class="fragment">
+						<aside class="notes">
+							<p> draw boxes around every component (and subcomponent) </p>
+							<p>What should be a compoent</p>
+							<p>use single responsibility principle,</p>
+							<p>that is, a component should ideally only do one thing. </p>
+							<small>If it ends up growing, it should be decomposed into smaller subcomponents.</small>
+						</aside>
+					</section>
+					<section>
+						<h2>Name your components</h2>
+						<ol>
+							<li>ProductRow (red)</li>
+							<li>ProductCategoryRow (turquoise)</li>
+							<li>ProductContainer (green) </li>
+							<li>SearchBar (blue)</li>
+							<li>FilterableProductContainer (orange)</li>
+						</ol>
+						<img src="./img/mockup-component3.png" alt="" class="fragment">
+						<aside class="notes">
+							FilterableProductContainer (orange): contains the entirety of the example
+							<br> SearchBar (blue): receives all user input
+							<br> ProductContainer (green): displays and filters the data collection based on user input
+							<br> ProductCategoryRow (turquoise): displays a heading for each category
+							<br> ProductRow (red): displays a row for each product
+						</aside>
+					</section>
+					<!-- <section>
+						<h2>Create Component without interactions</h2>
+					</section> -->
+					<section>
+						<h2>Data you have...</h2>
+						<table>
+							<tr>
+								<td>
+									<ul>
+										<li>Original list of products</li>
+										<li class="fragment">Search text the user has entered</li>
+										<li class="fragment">Value of the checkbox</li>
+										<li class="fragment">Filtered list of products</li>
+									</ul>
+								</td>
+								<td>
+									<img src="./img/mockup3.png" alt="">
+								</td>
+							</tr>
+						</table>
+	
+					</section>
+					<section>
+						<h4>Identify Minimal (but complete) UI State</h4>
+						<p class="fragment highlight-red">It's not a React state if...</p>
+						<div class="fragment">
+	
+							<ol>
+								<li>Just passed from parent via props</li>
+								<li>Remain unchanged over time</li>
+								<li>Can be computed by using other state/props</li>
+							</ol>
+						</div>
+					</section>
+					<section>
+						<h2>Assess your current states</h2>
+	
+						<pre><code>
+	class MyComponent extends Component {
+	  constructor(props) {
+		super(props);
+		this.state = { message: props.message + "!" };
+	  }
+	  componentWillReceiveProps(props) {
+		this.setState({ message: props.message + "!" });
+	  }
+	  render() {
+		return (
+		  <div>{this.state.message}</div>
+		);
+	  }
+	}
+						</code></pre>
+						<p class="fragment">
+							<small>Are you using states where you don't have to?</small>
+						</p>
+					</section>
+					<section>
+						<p>Just read from the props</p>
+						<pre><code>
+	render() {
+	  const excitedMessage = this.props.message + "!";
+	  return (<div>{excitedMessage}</div>);
+	}
+						</code></pre>
+						<br>
+						<p class="fragment">
+							<small>Avoid using state for data which can be calculated from props or other state</small>
+						</p>
+					</section>
 				<section>
 					<h2>
 						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
