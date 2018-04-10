@@ -76,7 +76,6 @@
 					<li>5 scenarios to Manage state</li>
 					<li>Redux</li>
 					<li>Redux-saga</li>
-					<li>And a lot of fun</li>
 				</ol>
 			</section>
 			<section>
@@ -128,10 +127,10 @@
 						<!-- <li class="fragment">Or your feelings about your partner</li> -->
 					</ul>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>What is changing in this pic?</h2>
 					<img src="./img/mario.gif" alt="">
-				</section>
+				</section> -->
 				<!-- <section>
 					<h3>In an application</h3>
 					<p class="fragment">A lot of information stored in the memory</p>
@@ -273,19 +272,19 @@
 			<section>
 				<section>
 					<h5>use case-1</h5>
-					<p>When you are building from scratch</p>
+					<p>You are building from scratch</p>
 					<br>
-					<h2>Think in React</h2>
+					<h2 class="hide">Think in React</h2>
 				</section>
 				<section>
 					<h3>Start with a mockup</h3>
 					<img src="./img/mockup3.png" alt="">
 					<pre><code class="hljs" data-trim contenteditable>
 [
-  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"}
+  {price: "$49.99", stocked: true, name: "Football"},
+  {price: "$9.99", stocked: true, name: "Baseball"},
+  {price: "$99.99", stocked: true, name: "iPod Touch"},
+  {price: "$399.99", stocked: false, name: "iPhone 5"}
 ];
 					</code></pre>
 					<br>
@@ -322,7 +321,7 @@ render() {
   return (
     <ul>
     {this.state.products.map(product => (
-      <li key={product.id}> {product.name}
+      <li key={product.id}> {product.name} {product.price}
         <button 
           onClick={e => this.toggleProductInOrder(product)}>
           {!product.selected ? 'Add' : 'Remove'}
@@ -337,8 +336,7 @@ render() {
 					<h4>Processing data becomes challenging</h4>
 					<pre><code class="hljs" data-trim contenteditable>
 toggleProductInOrder(product) {
-  // Take all our products, flip the selected one,
-  // and get a new list to send to the server
+  // Take all our products, flip the selected one
   const newProducts = this.state.products.map(p => {
     if (product.id !== p.id) { return p; }
     return { ...p, selected: !p.selected };
@@ -358,7 +356,7 @@ toggleProductInOrder(product) {
 					</ul>
 				</section>
 				<section>
-					<h4>Can you just data from server as needed</h4>
+					<h4>Handle Derived Property in Render</h4>
 					<pre><code class="hljs javascript es6" data-trim contenteditable>
 componentWillMount() {
   Promise.all([ api.shop.getProducts(), api.shop.getCurrentOrder()
@@ -376,10 +374,10 @@ render() {
   const { order, products } = this.state;
   return (<ul>
     {products.map(product => (
-      <li key={product.id}> {product.name}
+      <li key={product.id}> {product.name} {product.price}
         <button type="button"
           onClick={() => this.toggleProductInOrder(product)}>
-          {!this.getSelected(product) ? '+ Add' : '- Remove'}
+          {!this.getSelected(product) ? 'Add' : 'Remove'}
         </button>
       </li>
     )}
@@ -401,11 +399,45 @@ render() {
 							}							
 					</code></pre>
 					<br>
-					<ul class="fragment">
-						<li>Calcluate derived properties of your data during </li>
-					</ul>
+						<p><small>If possible calculate derived properties of your data during render()</small></p>
 					<p><small><a href="https://monicalent.com/blog/2017/07/23/manage-state-in-react/">Manage State in React</a></small></p>
 				</section>
+				<section>
+						<h2>Compute From states</h2>
+						<p>Digestible example</p>
+						<pre><code  class="hljs javaScript jsx" data-trim>
+	class MyComponent extends Component {
+	  constructor(props) {
+	    super(props);
+	    this.state = { message: props.message + "!" };
+	  }
+	  componentWillReceiveProps(props) {
+	    this.setState({ message: props.message + "!" });
+	  }
+	  render() {
+	    return (
+	      <div>{this.state.message}</div>
+	    );
+	  }
+	}
+						</code></pre>
+						<p class="hide">
+							<small>Are you using states where you don't have to?</small>
+						</p>
+					</section>
+					<section>
+						<p>Just read from the props</p>
+						<pre><code class="hljs javaScript jsx" data-trim>
+	render() {
+	  const excitedMessage = this.props.message + "!";
+	  return (<div>{excitedMessage}</div>);
+	}
+						</code></pre>
+						<br>
+						<p class="fragment">
+							<small>Avoid using state for data which can be calculated from props or other state</small>
+						</p>
+					</section>
 				<!-- <section>
 					<h2>Composable function React</h2>
 					<h2>Google it</h2>
@@ -434,7 +466,6 @@ render() {
 						<h2>Name your components</h2>
 						<ol>
 							<li>ProductRow (red)</li>
-							<li>ProductCategoryRow (turquoise)</li>
 							<li>ProductContainer (green) </li>
 							<li>SearchBar (blue)</li>
 							<li>FilterableProductContainer (orange)</li>
@@ -444,7 +475,6 @@ render() {
 							FilterableProductContainer (orange): contains the entirety of the example
 							<br> SearchBar (blue): receives all user input
 							<br> ProductContainer (green): displays and filters the data collection based on user input
-							<br> ProductCategoryRow (turquoise): displays a heading for each category
 							<br> ProductRow (red): displays a row for each product
 						</aside>
 					</section>
@@ -452,12 +482,14 @@ render() {
 						<h2>Create Component without interactions</h2>
 					</section> -->
 					<section>
-						<h2>Data you have...</h2>
+						<h2>Data you might have...</h2>
+						<h4>During Run time</h4>
 						<table>
 							<tr>
 								<td>
 									<ul>
-										<li>Original list of products</li>
+										<li>List of products</li>
+										<li class="fragment">Order list</li>
 										<li class="fragment">Search text the user has entered</li>
 										<li class="fragment">Value of the checkbox</li>
 										<li class="fragment">Filtered list of products</li>
@@ -482,42 +514,7 @@ render() {
 							</ol>
 						</div>
 					</section>
-					<section>
-						<h2>Assess your current states</h2>
-	
-						<pre><code>
-	class MyComponent extends Component {
-	  constructor(props) {
-		super(props);
-		this.state = { message: props.message + "!" };
-	  }
-	  componentWillReceiveProps(props) {
-		this.setState({ message: props.message + "!" });
-	  }
-	  render() {
-		return (
-		  <div>{this.state.message}</div>
-		);
-	  }
-	}
-						</code></pre>
-						<p class="fragment">
-							<small>Are you using states where you don't have to?</small>
-						</p>
-					</section>
-					<section>
-						<p>Just read from the props</p>
-						<pre><code>
-	render() {
-	  const excitedMessage = this.props.message + "!";
-	  return (<div>{excitedMessage}</div>);
-	}
-						</code></pre>
-						<br>
-						<p class="fragment">
-							<small>Avoid using state for data which can be calculated from props or other state</small>
-						</p>
-					</section>
+					
 				<section>
 					<h2>
 						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
@@ -552,11 +549,11 @@ render() {
 					</p>
 					<ul class="fragment">
 						<li>
-							ProductTable filters based on search text and checked state.</li>
+							ProductList filters based on search text and checked state.</li>
 						<li>The common owner component is
-							<code>FilterableProductTable</code>.</li>
+							<code>FilterableProductList</code>.</li>
 						<li class="fragment">
-							<code>FilterableProductTable</code> will contain the state
+							<code>FilterableProductList</code> will contain the state
 						</li>
 					</ul>
 					<p>
@@ -581,7 +578,8 @@ render() {
 						<li>Avoid storing data in
 							<code>this.state</code> which can be calculated from props</li>
 						<li>Try not to change data you get from server </li>
-						<li>Lift up state to use higher order component</li>
+						<li>Try to put derived property in render()</li>
+						<li>Try to avoid single event changing multiple state</li>
 					</ul>
 					<br>
 					<br>
