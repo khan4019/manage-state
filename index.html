@@ -54,7 +54,9 @@
 						<a href="https://twitter.com/Karinaislam2">Karina</a> and
 						<a href="https://jsdude.com">Jhankar</a>
 					</small> -->
-					<small><a href="">www.thatJSDude.com</a></small>
+					<small>
+						<a href="">www.thatJSDude.com</a>
+					</small>
 				</p>
 			</section>
 			<section>
@@ -64,6 +66,7 @@
 					<li>add few pictures</li>
 					<li>Redux and organize</li>
 					<li>Practice 40min</li>
+					<li>Understand toggle order </li>
 					<li>Update fun with pictures</li>
 				</ul>
 			</section>
@@ -71,7 +74,6 @@
 				<h2>We will cover</h2>
 				<ol>
 					<li>What is State</li>
-					<li>Manage state in React</li>
 					<li>5 scenarios to Manage state</li>
 					<li>Redux</li>
 					<li>Redux-saga</li>
@@ -123,7 +125,7 @@
 					<ul class="fragment">
 						<li>That might change</li>
 						<li class="fragment">Like: your mood, your confidence level</li>
-						<li class="fragment">Or London Weather: cold, cold, 2 weeks of summer</li>
+						<li class="fragment">Or London Weather: cold, rain, 2 weeks of summer!</li>
 						<!-- <li class="fragment">Or your feelings about your partner</li> -->
 					</ul>
 				</section>
@@ -268,30 +270,6 @@
 						</span>
 					</ul>
 				</section>
-				<section>
-					<h2>You might not need Redux</h2>
-					<ul>
-						<li>
-							<a href="http://">Think in React</a>
-						</li>
-						<li>
-							<a href="">Read about composition</a>
-						</li>
-						<!-- <li>Leverage
-							<a target="_blank" href="https://egghead.io/lessons/javascript-redux-persisting-the-state-to-the-local-storage?course=building-react-applications-with-idiomatic-redux">
-								Local storage</a>
-						</li> -->
-						<li class="fragment">You can apply ideas from Redux without using it</li>
-						<li class="fragment">Come back to Redux if you find a real need for it</li>
-					</ul>
-					<br>
-					<br>
-					<p>
-						<small>
-							<a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a>
-						</small>
-					</p>
-				</section>
 			</section>
 			<section>
 				<section>
@@ -322,7 +300,7 @@
 					<ul class="fragment">
 						<li>Draw boxes around component</li>
 						<li>Use Single responsibility principle</li>
-						<li>One component should ideally only do one thing</li>
+						<li>One component should ideally do one thing</li>
 					</ul>
 					<img src="./img/mockup-component.png" alt="" class="fragment">
 					<aside class="notes">
@@ -425,9 +403,9 @@ componentWillMount() {
     api.shop.getProducts(),
     api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
-    // Get the ids of all the products that are in my order now
+    // Get ids of all products in my order now
     const orderProductIds = order.products.map(p => p.id);
-    // Set a "selected" flag on the item in the list of all products
+    // Set "selected" flag on all products
     const uiProducts = products.map(p => {
       const selected = orderProductIds.indexOf(p.id) !== -1;
       return { ...p, selected };
@@ -462,9 +440,7 @@ toggleProductInOrder(product) {
 					<h4>Can you just data from server as needed</h4>
 					<pre><code class="hljs javascript es6" data-trim contenteditable>
 componentWillMount() {
-  Promise.all([
-    api.shop.getProducts(),
-    api.shop.getCurrentOrder()
+  Promise.all([ api.shop.getProducts(), api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
     // Benefit 1: No pre-processing of our data from the server
     this.setState({ products, order });
@@ -481,15 +457,14 @@ componentWillMount() {
 							  const updatedOrder = !selectedProduct
 							   ? { ...order, products: concat(order.products, product) }
 							   : { ...order, products: without(order.products, product) };							
-							  return api.shop.updateOrder(updatedOrder)
-							    .then(newOrder => {
-							    // Benefit 3: After updating the order, just chang the state
-							      this.setState({ order: newOrder });
-							    });
-							  }							
-							  getSelected(product) {
-								return this.state.order.products.find(p => p.id === product.id);
-							  }
+							  return api.shop.updateOrder(updatedOrder).then(newOrder => {
+							    // Benefit 3: After updating the order, just change the state
+							    this.setState({ order: newOrder });
+							  });
+							}							
+							getSelected(product) {
+							  return this.state.order.products.find(p => p.id === product.id);
+							}
 					</code></pre>
 				</section>
 				<!-- <section>
@@ -499,48 +474,35 @@ componentWillMount() {
 				<section>
 					<h2>
 						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
+					<img src="./img/mockup-component.png" alt="">
 					<table>
 						<tr>
 							<td>
+
+							</td>
+							<td>
 								<ul>
-									<li>Products is passed in as props: not state</li>
-									<li class="fragment">Filtered product can be computed via search text and checkbox: not state</li>
+									<li>Products passed as props: not state</li>
+									<li class="fragment">
+										<small>Filtered product can be computed via search text and checkbox: not state</small>
+									</li>
 									<li class="fragment">Search text user can entered: state</li>
 									<li class="fragment">Value in the checkbox: state</li>
 								</ul>
-							</td>
-							<td>
-								<img src="./img/mockup-component.png" alt="">
 							</td>
 						</tr>
 					</table>
 				</section>
 				<section>
 					<h2>Where to put the state</h2>
-					<p>Just 3 rules</p>
 					<ol class="fragment">
 						<li>Identify component that just has to render</li>
 						<li class="fragment">Put state in the common owner in the higher up</li>
 						<li class="fragment">If you don't find a common owner, create one</li>
 					</ol>
-					<br>
-					<p>
-						<small>
-							<a href="https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c">Handle state in React</a>
-						</small>
+					<p class="fragment">
+						<small>(Apply these 3 rules)</small>
 					</p>
-				</section>
-				<section>
-					<img src="./img/state.jpg" alt="">
-					<br>
-					<p>
-						<small>
-							<a href="https://twitter.com/dan_abramov/status/749710501916139520/photo/1">should be state or not</a>
-						</small>
-					</p>
-				</section>
-				<section>
-					<h2>Where to put the state</h2>
 					<ul class="fragment">
 						<li>
 							ProductTable filters based on search text and checked state.</li>
@@ -555,21 +517,33 @@ componentWillMount() {
 							<a target="_blank" href="https://codepen.io/gaearon/pen/LzWZvb?editors=0010">working code</a>
 						</small>
 					</p>
+					<br>
 				</section>
+				<!-- <section>
+					<img src="./img/state.jpg" alt="">
+					<br>
+					<p>
+						<small>
+							<a href="https://twitter.com/dan_abramov/status/749710501916139520/photo/1">should be state or not</a>
+						</small>
+					</p>
+				</section> -->
 				<section>
 					<h2>Summary</h2>
-					<ol>
-						<li>Identify Component Hierarchy</li>
-						<li>Name your component</li>
-						<li>Create Component without interactions</li>
-						<li>Identify Minimal (but complete) UI State</li>
-						<li>Find where to put your component</li>
-					</ol>
-				</section>
-				<section>
-					<h2>Quiz</h2>
-					<p class="fragment">Who was the guy knocking at the door?</p>
-					<img src="./img/knock.jpg" alt="" class="fragment">
+					<ul>
+						<li>Avoid storing data in
+							<code>this.state</code> which can be calculated from props</li>
+						<li>Try not to change data you get from server </li>
+						<li>Lift up state to use higher order component</li>
+					</ul>
+					<br>
+					<br>
+					<p>
+						<small>
+							<a href="https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c">Handle state in React</a>
+						</small>
+					</p>
+
 				</section>
 			</section>
 			<section>
@@ -605,19 +579,38 @@ componentWillMount() {
 					</code></pre>
 				</section>
 				<section>
-					<h2>Local Storage</h2>
+					<h2>Lighter State Management</h2>
+					<ul>
+						<li>Higher Order Component</li>
+						<li>Local Storage</li>
+						<li>Route Parameter</li>
+						<li>Database (if you are already using it)</li>
+					</ul>
 					<br>
 					<br>
-					<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
+					<br>
+					<p>
+						<small>
+							<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
+						</small>
+					</p>
 				</section>
 				<section>
 					<h2>Summary</h2>
-					<ul>
-						<li>Avoid storing data in
-							<code>this.state</code> which can be calculated from props</li>
-						<li>Try not to change data you get from server </li>
-						<li>Lift up state to use higher order component</li>
-					</ul>
+					<ol>
+						<li>
+							<a href="http://">Think in React</a>
+						</li>
+						<li>
+							<a href="">Read about composition</a>
+						</li>
+						<li>Find where to put your state</li>
+						<li class="fragment">
+							<a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a>
+						</li>
+						<li class="fragment">You can apply ideas from Redux without using it</li>
+						<li class="fragment">Come back to Redux if you find a real need for it</li>
+					</ol>
 					<br>
 					<br>
 					<p>
@@ -627,10 +620,24 @@ componentWillMount() {
 					</p>
 				</section>
 				<section>
+					<img src="./img/fun/knowWhy.jpg" alt="">
+					<aside class="notes">
+						<h2>Don't do it as if someone told you to do it</h2>
+					</aside>
+				</section>
+				<section>
+					<img src="./img/fun/useOnlyWhatYouNeed.jpg" alt="">
+				</section>
+				<section>
+					<img src="./img/fun/electricity.gif" alt="">
+				</section>
+				<section>
+					<img src="./img/fun/sleeping.jpg" alt="">
+				</section>
+				<section>
 					<h2>Quiz</h2>
-					<br>
-					<br>
-					<p class="fragment">What's the name of the other speaker?</p>
+					<p class="fragment">Who was the guy knocking at the door?</p>
+					<img src="./img/knock.jpg" alt="" class="fragment">
 				</section>
 			</section>
 			<section>
@@ -641,8 +648,10 @@ componentWillMount() {
 					<p>When you need to share state a lot</p>
 				</section>
 				<section>
-					<h2>How we manage state</h2>
-					<h5>In React</h5>
+					<img src="./img/fun/lawnMower.jpg" alt="">
+					<aside class="notes">
+						<p>Framework's job is to make your life easier</p>
+					</aside>
 				</section>
 				<section>
 					<img src="./img/redux/componentTree1.png" alt="">
@@ -807,12 +816,13 @@ npm install --save react-redux
 					</p>
 				</section>
 				<section>
+					<img src="./img/fun/sleeping6.jpg" alt="">
+				</section>
+				<section>
 					<h2>Quiz</h2>
-					<p class="fragment">Why uncle bob created mess with his javascript framework?</p>
 					<br>
 					<br>
-					<br>
-					<p class="fragment">He didn't: React</p>
+					<p class="fragment">What's the name of the other speaker?</p>
 				</section>
 			</section>
 			<section>
@@ -861,6 +871,9 @@ npm install --save react-redux
 							<a href="https://medium.com/@alexmngn/how-to-use-redux-on-highly-scalable-javascript-applications-4e4b8cb5ef38">redux scaleable architecure</a>
 						</small>
 					</p>
+				</section>
+				<section>
+					<img src="./img/fun/sucks.jpg" alt="">
 				</section>
 				<section>
 					<h2>Consider</h2>
@@ -1152,7 +1165,7 @@ npm install --save react-redux
 				<section>
 					<h2>Free tip</h2>
 				</section>
-				<section>
+				<!-- <section>
 					<p>Tight on food budget</p>
 					<img class="fragment" src="./img/banana.jpg" alt="">
 				</section>
@@ -1165,7 +1178,24 @@ npm install --save react-redux
 				</section>
 				<section>
 					<img src="./img/gym.jpg" alt="">
-				</section>
+				</section> -->
+				<section>
+						<h3>Appear Busy at Work</h3>
+						<ol>
+							<li class="fragment">Ctrl + 1 when big brother is around</li>
+							<br>
+							<li class="fragment">Always carry extra bag and print out</li>
+							<li class="fragment">don't leave before ur manager</li>
+							<br>
+							<li class="fragment">Dont use the same rest room in a row</li>
+							<li class="fragment">Do lunch at your desk not break room</li>
+							<br>
+							<li class="fragment">Always leave a extra jacket on your chair</li>
+							<li class="fragment">Compose email during office hours, send it midnight or weekends</li>
+						</ol>
+						<br>
+						<a href="http://www.wikihow.com/Look-Busy-at-Work-Without-Really-Working">Look busy</a>
+					</section>
 			</section>
 			<!-- <section>
 				<h2>Learn React</h2>
@@ -1196,10 +1226,13 @@ npm install --save react-redux
 					 <a href="">@jsDude005</a> and <a href="">@karinaIslam1</a> -->
 					<br> -Slides:
 					<a href="https://khan4019.github.io/manage-state/index.html">khan4019.github.io/manage-state</a>
-					<p>-Website: <a href="http://thatjsdude.com">thatjsude.com</a></p>
+					<p>-Website:
+						<a href="http://thatjsdude.com">thatjsude.com</a>
+					</p>
 					<small>-Free Dinner:
-						<a href="">Go to a meetup</a></small>
-					
+						<a href="">Go to a meetup</a>
+					</small>
+
 				</p>
 			</section>
 
