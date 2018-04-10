@@ -273,8 +273,9 @@
 			<section>
 				<section>
 					<h5>use case-1</h5>
-					<h2>Think in React</h2>
 					<p>When you are building from scratch</p>
+					<br>
+					<h2>Think in React</h2>
 				</section>
 				<section>
 					<h3>Start with a mockup</h3>
@@ -315,22 +316,22 @@
 					<ol>
 						<li>ProductRow (red)</li>
 						<li>ProductCategoryRow (turquoise)</li>
-						<li>ProductTable (green) </li>
+						<li>ProductContainer (green) </li>
 						<li>SearchBar (blue)</li>
-						<li>FilterableProductTable (orange)</li>
+						<li>FilterableProductContainer (orange)</li>
 					</ol>
 					<img src="./img/mockup-component.png" alt="" class="fragment">
 					<aside class="notes">
-						FilterableProductTable (orange): contains the entirety of the example
+						FilterableProductContainer (orange): contains the entirety of the example
 						<br> SearchBar (blue): receives all user input
-						<br> ProductTable (green): displays and filters the data collection based on user input
+						<br> ProductContainer (green): displays and filters the data collection based on user input
 						<br> ProductCategoryRow (turquoise): displays a heading for each category
 						<br> ProductRow (red): displays a row for each product
 					</aside>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>Create Component without interactions</h2>
-				</section>
+				</section> -->
 				<section>
 					<h2>Data you have...</h2>
 					<table>
@@ -393,6 +394,10 @@ render() {
   return (<div>{excitedMessage}</div>);
 }
 					</code></pre>
+					<br>
+					<p class="fragment">
+						<small>Avoid using state for data which can be calculated from props or other state</small>
+					</p>
 				</section>
 				<section>
 					<h4>Are you changing data you get from the API</h4>
@@ -402,7 +407,7 @@ componentWillMount() {
     api.shop.getProducts(),
     api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
-    // Get ids of all products in my order now
+    // Extract ids of the products in my order now
     const orderProductIds = order.products.map(p => p.id);
     // Set "selected" flag on all products
     const uiProducts = products.map(p => {
@@ -411,6 +416,24 @@ componentWillMount() {
     });
     this.setState({ products: uiProducts, order });
   });
+}
+					</code></pre>
+					<p class="fragment">You need to manage two list in the state</p>
+				</section>
+				<section>
+					<pre><code  class="hljs  javascript es6" data-trim>
+render() {
+  return (
+    <ul>
+    {this.state.products.map(product => (
+      <li key={product.id}> {product.name}
+        <button 
+          onClick={e => this.toggleProductInOrder(product)}>
+          {!product.selected ? 'Add' : 'Remove'}
+        </button>
+      </li>)}
+    </ul>
+  );
 }
 					</code></pre>
 				</section>
@@ -426,14 +449,17 @@ toggleProductInOrder(product) {
   });
   // Filter out the selected products
   const newOrderProducts = newProducts.filter(p => p.selected);
-  const updatedOrder = { ...this.state.order, products: newOrderProducts };
   // Update both the order and the products
-  return api.shop.updateOrder(updatedOrder)
+  return api.shop.updateOrder(newOrderProducts)
     .then(newOrder => {
       this.setState({ order: newOrder, products: newProducts });
     });
 }
 					</code></pre>
+					<ul class="fragment">
+						<li>Avoid changing data you get from the API</li>
+						<li>Try to avoid 2 or more state change with one event</li>
+					</ul>
 				</section>
 				<section>
 					<h4>Can you just data from server as needed</h4>
@@ -441,30 +467,48 @@ toggleProductInOrder(product) {
 componentWillMount() {
   Promise.all([ api.shop.getProducts(), api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
-    // Benefit 1: No pre-processing of our data from the server
+    // No pre-processing of our data from the server
     this.setState({ products, order });
   });
+}
+getSelected(product) {
+  return this.state.order.products.find(p => p.id === product.id);
+}
+					</code></pre>
+					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
+render() {
+  const { order, products } = this.state;
+  return (<ul>
+    {products.map(product => (
+      <li key={product.id}> {product.name}
+        <button type="button"
+          onClick={() => this.toggleProductInOrder(product)}>
+          {!this.getSelected(product) ? '+ Add' : '- Remove'}
+        </button>
+      </li>
+    )}
+  </ul>);
 }
 					</code></pre>
 				</section>
 				<section>
 					<pre><code class="hljs" data-trim contenteditable>
 							toggleProductInOrder(product) {
-							  const { products, order } = this.state;
+							  const  order = this.state.order;
 							  const selectedProduct = this.getSelected(product);							
-							  // Benefit 2: Updating an order is just adding or removing on item
-							  const updatedOrder = !selectedProduct
-							   ? { ...order, products: concat(order.products, product) }
-							   : { ...order, products: without(order.products, product) };							
+							  //Updating an order is just adding or removing on item
+							  const updatedOrder = selectedProduct
+							   ? without(order, product) : concat(order, product) ;							
 							  return api.shop.updateOrder(updatedOrder).then(newOrder => {
-							    // Benefit 3: After updating the order, just change the state
-							    this.setState({ order: newOrder });
+							    this.setState({ order: newOrder }); //update one state
 							  });
 							}							
-							getSelected(product) {
-							  return this.state.order.products.find(p => p.id === product.id);
-							}
 					</code></pre>
+					<br>
+					<ul class="fragment">
+						<li>Calcluate derived properties of your data during </li>
+					</ul>
+					<p><small><a href="https://monicalent.com/blog/2017/07/23/manage-state-in-react/">Manage State in React</a></small></p>
 				</section>
 				<!-- <section>
 					<h2>Composable function React</h2>
