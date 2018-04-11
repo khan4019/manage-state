@@ -219,8 +219,8 @@
 					<ul>
 						<li>Put app state out of your component</li>
 						<li class="fragment">Create state as plain objects and arrays</li>
-						<li class="fragment">Describe changes as plain objects.</li>
-						<li class="fragment">Handling changes as pure functions.</li>
+						<li class="fragment">Describe changes as plain objects</li>
+						<li class="fragment">Handling changes as pure functions</li>
 					</ul>
 					<br>
 					<br>
@@ -245,8 +245,6 @@
 						<p>Answer is: you dont have to</p>
 					</aside>
 				</section>
-			</section>
-			<section>
 				<section>
 					<h3>Asses your application</h2>
 						<ul>
@@ -422,7 +420,7 @@ render() {
 				<section>
 						<h2>Digestible example</h2>
 						<p>Compute From states</p>
-						<pre><code  class="hljs javaScript jsx" data-trim>
+						<pre class="fragment"><code  class="hljs javaScript jsx" data-trim>
 	class MyComponent extends Component {
 	  constructor(props) {
 	    super(props);
@@ -815,7 +813,7 @@ add(1, 2); // WILL ALWAYS output 3
 					<pre class="hljs javascript"><code>
 case ADD_TODO:
   return [
-  ...state,
+  ...todos,
   {
     text: action.text,
     completed: false
@@ -945,7 +943,7 @@ npm install --save react-redux
 					<img src="./img/fun/sucks.jpg" alt="">
 				</section>
 				<section>
-					<h2>Consider</h2>
+					<h4>Consider</h4>
 					<ul class="fragment">
 						<li>Redux actions creators and reducers with feature</li>
 						<li>Create Data module for data that is not tightly bound to a container component</li>
@@ -957,22 +955,22 @@ npm install --save react-redux
 							<li>Use Redux-saga or thunk (middleware)</li>
 						</div>
 						<div class="fragment">
-							<li>Use selector functions to pass bits of state to components</li>
-							<li>Consider using <a href="https://github.com/reactjs/reselect"> reselect </a>(memoization) to optimize their performance</li>
+							<li>Use <a href="https://gist.github.com/abhiaiyer91/aaf6e325cf7fc5fd5ebc70192a1fa170">selector</a> to pass bits of state to components</li>
+							<li>Consider <a href="https://github.com/reactjs/reselect"> reselect </a> to optimize performance</li>
 						</div>
 					</ul>
 					<br>
-					<br>
 					<p>
 						<small>
-							<a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a>
+							<a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a>,
+							<a href="https://hackernoon.com/selector-pattern-painless-redux-store-destructuring-bfc26b72b9ae">Destructuring react store</a>
 						</small>
 					</p>
-					<p>
-						<small>
-							<a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a>
-						</small>
-					</p>
+					<!-- <p>
+							<small>
+								<a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a>
+							</small>
+						</p> -->
 				</section>
 				<!-- <section>
 					<p>Is Redux more performant? No. In fact, it gets slightly slower with each new action that must be handled.</p>
@@ -1070,7 +1068,9 @@ npm install --save react-redux
 						<li>Access the browser cache</li>
 
 					</ul>
-
+					<aside class="notes">redux-saga is a library that aims to make application side effects 
+						(i.e. asynchronous things like data fetching and impure things like accessing the browser cache)
+						 easier to manage, more efficient to execute, simple to test, and better at handling failures.</aside>
 				</section>
 				<section>
 					<h2>Redux-saga</h2>
@@ -1133,14 +1133,14 @@ npm install --save react-redux
 	function* loadUser() {
 	  try {
 	    //1st step: call getUser,  then assign value to user
-	    const user = yield call(fetch, '/getUser', { method: 'GET' });
+	    const user = yield call(fetch,'/getUser',{method:'GET'});
 		
-	   //2nd step: dispatch action
-	   yield put({type: 'FETCH_USER_SUCCESS', payload: user});
+	    //2nd step: dispatch action
+	    yield put({type: 'FETCH_USER_SUCCESS', payload: user});
 	  } 
 	  catch(error) {
-		//optional step: if something fails dispatch fail
-		yield put({type: 'FETCH_FAILED', error});
+	    //optional step: if something fails dispatch fail
+      yield put({type: 'FETCH_FAILED', error});
 	  }
 	}
 							</code></pre>
@@ -1208,9 +1208,6 @@ npm install --save react-redux
 					<h2>References</h2>
 					<ul>
 						<li>
-							<a href="https://hackernoon.com/selector-pattern-painless-redux-store-destructuring-bfc26b72b9ae">Destructuring react store</a>
-						</li>
-						<li>
 							<a href="https://medium.freecodecamp.org/async-operations-using-redux-saga-2ba02ae077b3">Async operations using redux-saga</a>
 						</li>
 						<li>
@@ -1225,6 +1222,9 @@ npm install --save react-redux
 						<li>
 							<a href="https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1">Use set state as a function</a>
 						</li>
+						<li><a href="https://medium.com/grey-frogs/writing-more-testable-code-with-redux-saga-c1561f995225">Testable code with Saga</a></li>
+						<li><a href="https://github.com/markerikson/react-redux-links/blob/master/redux-side-effects.md">list of important resources</a></li>
+						<li><a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">Saga vs thunk</a></li>
 					</ul>
 				</section>
 			</section>
@@ -1345,8 +1345,8 @@ npm install --save react-redux
 					<p>-Youtube:
 						<a href="https://www.youtube.com/c/ThatJSDude">youtube.com/c/ThatJSDude</a>
 					</p>
-					<small>-Free Dinner:
-						<a href="https://www.meetup.com/">Go to a meetup</a>
+					<small>-Email:
+						<a href="https://twitter.com/jsdude005">khan4019@gmail.com</a>
 					</small>
 
 				</p>
