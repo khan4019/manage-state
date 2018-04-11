@@ -464,6 +464,7 @@ render() {
 				<section>
 					<h2>What if you can</h2>
 					<h4>Recreate the wheel</h4>
+					<img src="./img/wheel.jpg" alt="">
 				</section>
 				<section>
 						<h3> Identify Component Hierarchy</h3>
@@ -547,8 +548,9 @@ render() {
 					</p>
 					<ul class="fragment">
 						<li>
-							ProductList filters based on search text and checked state</li>
-						<li>
+							ProductContainer doesn't have filters information</li>
+							<li>SearchBar doesn't have product list</li>
+						<li class="fragment">
 							<code>FilterableProductList</code> is the common owner</li>
 						<li class="fragment">
 							<code>FilterableProductList</code> will contain the state
@@ -570,6 +572,7 @@ render() {
 							<li>Products: state (could be a property)</li>
 							<li class="fragment">Filtered product can be computed via search text and checkbox: not state
 							</li>
+							<li class="fragment">Is item selected: not state</li>
 							<li class="fragment">Order list changes on toggle: state</li>	
 							<li class="fragment">Search text user can entered: state</li>
 							<li class="fragment">Value in the checkbox: state</li>
@@ -951,11 +954,11 @@ npm install --save react-redux
 						<li class="fragment">Put distinct domains into sub-store and split reducers</li>
 						<div class="fragment">
 							<li>Isolate network communication in one place</li>
-							<li>Use Redux-saga or thunk and rest of the code is easily testable</li>
+							<li>Use Redux-saga or thunk (middleware)</li>
 						</div>
 						<div class="fragment">
 							<li>Use selector functions to pass bits of state to components</li>
-							<li>consider using reselect (memoization) to optimize their performance</li>
+							<li>Consider using <a href="https://github.com/reactjs/reselect"> reselect </a>(memoization) to optimize their performance</li>
 						</div>
 					</ul>
 					<br>
