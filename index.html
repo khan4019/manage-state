@@ -283,8 +283,10 @@
 [
   {price: "$49.99", stocked: true, name: "Football"},
   {price: "$9.99", stocked: true, name: "Baseball"},
+  {price: "$29.99", stocked: false, name: "Basketball"},
   {price: "$99.99", stocked: true, name: "iPod Touch"},
-  {price: "$399.99", stocked: false, name: "iPhone 5"}
+  {price: "$399.99", stocked: false, name: "iPhone 5"},
+  {price: "$199.99", stocked: true, name: "Nexus 7"},
 ];
 					</code></pre>
 					<br>
@@ -295,7 +297,7 @@
 					</p>
 				</section>
 				<section>
-					<h4>Are you changing data you get from the API</h4>
+					<h4>You started loading data from the API</h4>
 					<pre><code class="hljs jsx" data-trim contenteditable>
 componentWillMount() {
   Promise.all([
@@ -303,7 +305,7 @@ componentWillMount() {
     api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
     // Extract ids of the products in my order now
-    const orderProductIds = order.products.map(p => p.id);
+    const orderProductIds = order.map(p => p.id);
     // Set "selected" flag on all products
     const uiProducts = products.map(p => {
       const selected = orderProductIds.indexOf(p.id) !== -1;
@@ -313,14 +315,15 @@ componentWillMount() {
   });
 }
 					</code></pre>
-					<p class="fragment">You need to manage two list in the state</p>
-					<p><small class="fragment">(this is simplified state)</small></p>
+					<p class="fragment">Adding two lists in the state</p>
+					<!-- <p><small class="fragment">(this is simplified state)</small></p> -->
 					<aside class="notes">
 						<p>You started building part of it</p>
 					</aside>
 				</section>
 				<section>
-					<pre><code  class="hljs  javascript es6" data-trim>
+					<img src="./img/render1.png" alt="">
+					<!-- <pre><code class="hljs xml">
 render() {
   return (
     <ul>
@@ -334,15 +337,15 @@ render() {
     </ul>
   );
 }
-					</code></pre>
+					</code></pre> -->
 				</section>
 				<section>
-					<h4>Processing data becomes challenging</h4>
-					<pre><code class="hljs" data-trim contenteditable>
+					<h4>Handle a product toggle</h4>
+					<pre><code class="hljs es6 jsx" data-trim contenteditable>
 toggleProductInOrder(product) {
-  // Take all our products, flip the selected one
+  // Take all products, flip selection of the toggled one
   const newProducts = this.state.products.map(p => {
-    if (product.id !== p.id) { return p; }
+    if (p.id !== product.id) { return p; }
     return { ...p, selected: !p.selected };
   });
   // Filter out the selected products
@@ -354,26 +357,31 @@ toggleProductInOrder(product) {
     });
 }
 					</code></pre>
-					<ul class="fragment">
-						<li>Avoid changing data you get from the API</li>
-						<li>Try to avoid 2 or more state change with one event</li>
-					</ul>
 				</section>
 				<section>
-					<h4>Handle Derived Property in Render</h4>
-					<pre><code class="hljs javascript es6" data-trim contenteditable>
+					<h4>Can we make state simpler?</h4>
+					<ul class="fragment">
+							<li> Try to Avoid changing data you get from the API</li>
+							<li class="fragment">Handle Derived Property in Render</li>
+							<li class="fragment">Try to avoid 2 or more state change with one event</li>
+						</ul>
+					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
 componentWillMount() {
-  Promise.all([ api.shop.getProducts(), api.shop.getCurrentOrder()
+  Promise.all([ 
+    api.shop.getProducts(), 
+    api.shop.getCurrentOrder()
   ]).then(([products, order]) => {
     // No pre-processing of our data from the server
     this.setState({ products, order });
   });
 }
+
 getSelected(product) {
-  return this.state.order.products.find(p => p.id === product.id);
+  return this.state.order.find(p => p.id === product.id);
 }
 					</code></pre>
-					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
+					
+					<!-- <pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
 render() {
   const { order, products } = this.state;
   return (<ul>
@@ -387,28 +395,33 @@ render() {
     )}
   </ul>);
 }
-					</code></pre>
+					</code></pre> -->
+				</section>
+				<section>
+						<img src="./img/render2.png" alt="">
+						<br>
+						<p><small>If possible calculate derived properties of your data during render()</small></p>
 				</section>
 				<section>
 					<pre><code class="hljs" data-trim contenteditable>
 							toggleProductInOrder(product) {
-							  const  order = this.state.order;
+							  const order = this.state.order;
 							  const selectedProduct = this.getSelected(product);							
 							  //Updating an order is just adding or removing on item
 							  const updatedOrder = selectedProduct
 							   ? without(order, product) : concat(order, product) ;							
-							  return api.shop.updateOrder(updatedOrder).then(newOrder => {
-							    this.setState({ order: newOrder }); //update one state
+							  return api.shop.updateOrder(updatedOrder)
+							   .then(newOrder => {
+							     this.setState({ order: newOrder }); //update one state
 							  });
 							}							
 					</code></pre>
-					<br>
-						<p><small>If possible calculate derived properties of your data during render()</small></p>
+					<br><br>
 					<p><small><a href="https://monicalent.com/blog/2017/07/23/manage-state-in-react/">Manage State in React</a></small></p>
 				</section>
 				<section>
-						<h2>Compute From states</h2>
-						<p>Digestible example</p>
+						<h2>Digestible example</h2>
+						<p>Compute From states</p>
 						<pre><code  class="hljs javaScript jsx" data-trim>
 	class MyComponent extends Component {
 	  constructor(props) {
@@ -430,7 +443,7 @@ render() {
 						</p>
 					</section>
 					<section>
-						<p>Just read from the props</p>
+						<p>Just read from the props/state</p>
 						<pre><code class="hljs javaScript jsx" data-trim>
 	render() {
 	  const excitedMessage = this.props.message + "!";
@@ -446,6 +459,8 @@ render() {
 					<h2>Composable function React</h2>
 					<h2>Google it</h2>
 				</section> -->
+			</section>
+			<section>
 				<section>
 					<h2>What if you can</h2>
 					<h4>Recreate the wheel</h4>
@@ -487,7 +502,7 @@ render() {
 					</section> -->
 					<section>
 						<h2>Data you might have...</h2>
-						<h4>During Run time</h4>
+						<p> <small>During Run time</small>	</h4>
 						<table>
 							<tr>
 								<td>
@@ -507,7 +522,7 @@ render() {
 	
 					</section>
 					<section>
-						<h4>Identify Minimal (but complete) UI State</h4>
+						<h4>Identify UI State</h4>
 						<p class="fragment highlight-red">It's not a React state if...</p>
 						<div class="fragment">
 	
@@ -519,28 +534,7 @@ render() {
 						</div>
 					</section>
 					
-				<section>
-					<h2>
-						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
-					<img src="./img/mockup-component3.png" alt="">
-					<table>
-						<tr>
-							<td>
-
-							</td>
-							<td>
-								<ul>
-									<li>Products passed as props: not state</li>
-									<li class="fragment">
-										<small>Filtered product can be computed via search text and checkbox: not state</small>
-									</li>
-									<li class="fragment">Search text user can entered: state</li>
-									<li class="fragment">Value in the checkbox: state</li>
-								</ul>
-							</td>
-						</tr>
-					</table>
-				</section>
+				
 				<section>
 					<h2>Where to put the state</h2>
 					<ol class="fragment">
@@ -553,9 +547,9 @@ render() {
 					</p>
 					<ul class="fragment">
 						<li>
-							ProductList filters based on search text and checked state.</li>
-						<li>The common owner component is
-							<code>FilterableProductList</code>.</li>
+							ProductList filters based on search text and checked state</li>
+						<li>
+							<code>FilterableProductList</code> is the common owner</li>
 						<li class="fragment">
 							<code>FilterableProductList</code> will contain the state
 						</li>
@@ -567,6 +561,21 @@ render() {
 					</p>
 					<br>
 				</section>
+				<section>
+						<h2>
+							<strong class="fragment highlight-green">state</strong> me if you can...</h2>
+						<img src="./img/mockup-component3.png" alt="">
+						<ul>
+							<small>
+							<li>Products: state (could be a property)</li>
+							<li class="fragment">Filtered product can be computed via search text and checkbox: not state
+							</li>
+							<li class="fragment">Order list changes on toggle: state</li>	
+							<li class="fragment">Search text user can entered: state</li>
+							<li class="fragment">Value in the checkbox: state</li>
+							</small>
+						</ul>
+					</section>
 				<!-- <section>
 					<img src="./img/state.jpg" alt="">
 					<br>
@@ -579,9 +588,10 @@ render() {
 				<section>
 					<h2>Summary</h2>
 					<ul>
+							<li>Try not to change data you get from server </li>
 						<li>Avoid storing data in
-							<code>this.state</code> which can be calculated from props</li>
-						<li>Try not to change data you get from server </li>
+							<code>this.state</code> which can be calculated from props/state</li>
+						
 						<li>Try to put derived property in render()</li>
 						<li>Try to avoid single event changing multiple state</li>
 					</ul>
@@ -697,9 +707,9 @@ render() {
 					<p>When you need to share state a lot</p>
 				</section>
 				<section>
-					<img src="./img/fun/lawnMower.jpg" alt="">
+					<img src="./img/fun//fly.jpg" alt="">
 					<aside class="notes">
-						<p>Framework's job is to make your life easier</p>
+						<p>Framework will do the hard lift</p>
 					</aside>
 				</section>
 				<section>
@@ -899,6 +909,13 @@ npm install --save react-redux
 						<p>When you have issues with your Redux state, chances are you may have issues maintaining your entire application </p>
 					</aside>
 				</section>
+				<section>
+						<img src="./img/fun/lawnMower.jpg" alt="">
+						<aside class="notes">
+							<p>Framework's job is to make your life easier</p>
+						</aside>
+					</section>
+					
 				<section>
 					<h2>Messed up with Redux</h2>
 					<ul class="fragment">
