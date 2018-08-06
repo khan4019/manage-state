@@ -68,6 +68,7 @@
 					<li>finish up the document</li>
 					<li>Building from scratch : ema-john example</li>
 					<li>move adding redux after the use case</li>
+					<li>put summary nicely</li>
 				</ul>
 			</section>
 			<!-- <section>
@@ -239,88 +240,7 @@
 				</section>
 
 			</section>
-			<section>
-				<section>
-					<p>Your manager tells you to</p>
-					<h2>Add more features...</h2>
-				</section>
-				<section>
-					<h4>More features mean...</h4>
-					<ul class="fragment">
-						<li>More components</li>
-						<li>More data, more props has to pass data</li>
-						<li class="fragment">More event handler has to be managed</li>
-						<li class="fragment">State grows and becomes complicated</li>
-						<br>
-						<li class="fragment"> And you create more mess...</li>
-					</ul>
-					<br>
-					<br>
-					<p class="fragment">
-						<small>But Don't worry: the bigger is the mess, this higher is the job security</small>
-					</p>
-				</section>
-				<section data-background="./img/sheldon.gif">
-					<h2 class="fragment highlight-red">
-						<strong>Redux</strong>
-					</h2>
-					<p>Will start knocking at your door</p>
-					<aside class="notes">
-					</aside>
-				</section>
-				<section>
-					<h2>Redux will ask you</h2>
-					<ul>
-						<li>Put app state out of your component</li>
-						<li class="fragment">Create state as plain objects and arrays</li>
-						<li class="fragment">Describe changes as plain objects</li>
-						<li class="fragment">Handling changes as pure functions</li>
-					</ul>
-					<br>
-					<br>
-					<p class="fragment">
-						<small>None of these is a must to build an app</small>
-					</p>
-				</section>
-				<section data-background="./img/worse.jpg">
-					<h2>Adding
-						<span class="fragment highlight-green">Redux</span>
-					</h2>
-					<ul>
-						<li class="fragment">Will add an indirection to your problem</li>
-						<li class="fragment">Will shift the complexity in a different direction</li>
-						<li class="fragment">Could make your situation
-							<strong class="fragment highlight-red"> WORSE</strong>
-						</li>
-					</ul>
-					<p class="fragment">Is redux a must?</p>
-					<aside class="notes">
-						<h2>Question arises...</h2>
-						<p>Answer is: you dont have to</p>
-					</aside>
-				</section>
-				<section>
-					<h3>Asses your application</h2>
-						<ul>
-							<!-- <li>Is it more than 20 components?</li> -->
-							<li class="fragment">How many sibling Components have to communicate?</li>
-							<li class="fragment">Does child component contain state from parent component?</li>
-							<li class="fragment">How many different views need to share state?</li>
-						</ul>
-				</section>
-				<section>
-					<h2>Assess your team</h2>
-					<ul class="fragment">
-						<li>Do a proof of concept in a feature branch</li>
-						<li class="fragment">Explore how it solves the problem before diving into it</li>
-						<span class="fragment">
-							<li>Does team understand: Redux core concepts. </li>
-							<li>Can handle extra level of complexity</li>
-							<li>Immutabilty, pure function, etc.</li>
-						</span>
-					</ul>
-				</section>
-			</section>
+
 			<section>
 				<section>
 					<h5>use case-1</h5>
@@ -572,8 +492,9 @@ render() {
 						<li>Draw boxes around component</li>
 						<li>Use Single responsibility principle</li>
 						<li>One component should ideally do one thing</li>
+						<li>Think about re-usability</li>
 					</ul>
-					<img src="./img/mockup-component3.png" alt="" class="fragment">
+					<!-- <img src="./img/mockup-component3.png" alt="" class="fragment"> -->
 					<aside class="notes">
 						<p> draw boxes around every component (and subcomponent) </p>
 						<p>What should be a compoent</p>
@@ -584,13 +505,14 @@ render() {
 				</section>
 				<section>
 					<h2>Name your components</h2>
-					<ol>
+					<img src="./img/ema-john/products2.png" alt="">
+					<!-- <ol>
 						<li>ProductRow (red)</li>
 						<li>ProductContainer (green) </li>
 						<li>SearchBar (blue)</li>
 						<li>FilterableProductContainer (orange)</li>
 					</ol>
-					<img src="./img/mockup-component3.png" alt="" class="fragment">
+					<img src="./img/mockup-component3.png" alt="" class="fragment"> -->
 					<aside class="notes">
 						FilterableProductContainer (orange): contains the entirety of the example
 						<br> SearchBar (blue): receives all user input
@@ -601,7 +523,7 @@ render() {
 				<!-- <section>
 						<h2>Create Component without interactions</h2>
 					</section> -->
-				<section>
+				<!-- <section>
 					<h2>Data you might have...</h2>
 					<p>
 						<small>During Run time</small>
@@ -623,10 +545,10 @@ render() {
 							</tr>
 						</table>
 
-				</section>
+				</section> -->
 				<section>
 					<h4>Identify UI State</h4>
-					<p class="fragment highlight-red">It's not a React state if...</p>
+					<!-- <p class="fragment highlight-red">It's not a React state if...</p>
 					<div class="fragment">
 
 						<ol>
@@ -634,9 +556,12 @@ render() {
 							<li>Remain unchanged over time</li>
 							<li>Can be computed by using other state/props</li>
 						</ol>
-					</div>
+					</div> -->
+					<img src="./img/ema-john/products.png" alt="">
 				</section>
-
+				<section>
+					<img src="./img/ema-john/products3.png" alt="">
+				</section>
 
 				<section>
 					<h2>Where to put the state</h2>
@@ -653,19 +578,19 @@ render() {
 							ProductContainer doesn't have filters information</li>
 						<li>SearchBar doesn't have product list</li>
 						<li class="fragment">
-							<code>FilterableProductList</code> is the common owner</li>
+							<code>cart</code> doesn't have selected product price</li>
 						<li class="fragment">
-							<code>FilterableProductList</code> will contain the state
+							<code>Shop</code> will contain the state
 						</li>
 					</ul>
 					<p>
 						<small>
-							<a target="_blank" href="https://codepen.io/gaearon/pen/LzWZvb?editors=0010">working code</a>
+							<a target="_blank" href="https://github.com/khan4019/ema-john">working code</a>
 						</small>
 					</p>
 					<br>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>
 						<strong class="fragment highlight-green">state</strong> me if you can...</h2>
 					<img src="./img/mockup-component3.png" alt="">
@@ -681,7 +606,7 @@ render() {
 						</small>
 					</ul>
 				</section>
-				<!-- <section>
+				<section>
 					<img src="./img/state.jpg" alt="">
 					<br>
 					<p>
@@ -707,15 +632,102 @@ render() {
 							<a href="https://medium.com/react-ecosystem/how-to-handle-state-in-react-6f2d3cd73a0c">Handle state in React</a>
 						</small>
 					</p>
-
+				</section>
+				<section>
+					<h2>Quiz Time - 1</h2>
 				</section>
 			</section>
 			<section>
-				<section>
+
+			<section>
 					<h5>use Case - 2</h5>
 					<h2>You have a little mess</h2>
-					<p>When you need to Share state</p>
 				</section>
+				<section>
+					<p>Your manager tells you to</p>
+					<h3>Add more features...</h3>
+					<img src="./img/ema-john/header.png" alt="">
+				</section>
+				<section>
+					<h4>More features mean...</h4>
+					<ul class="fragment">
+						<li>More components</li>
+						<li>More data, more props has to pass data</li>
+						<li class="fragment">More event handler has to be managed</li>
+						<li class="fragment">State grows and becomes complicated</li>
+						<br>
+						<li class="fragment"> And you create more mess...</li>
+					</ul>
+					<br>
+					<br>
+					<p class="fragment">
+						<small>But Don't worry: the bigger is the mess, this higher is the job security</small>
+					</p>
+				</section>
+				<section data-background="./img/sheldon.gif">
+					<h2 class="fragment highlight-red">
+						<strong>Redux</strong>
+					</h2>
+					<p>Will start knocking at your door</p>
+					<aside class="notes">
+					</aside>
+				</section>
+				<section>
+					<h2>Redux will ask you</h2>
+					<ul>
+						<li>Put app state out of your component</li>
+						<li class="fragment">Create state as plain objects and arrays</li>
+						<li class="fragment">Describe changes as plain objects</li>
+						<li class="fragment">Handling changes as pure functions</li>
+					</ul>
+					<br>
+					<br>
+					<p class="fragment">
+						<small>None of these is a must to build an app</small>
+					</p>
+				</section>
+				<section data-background="./img/worse.jpg">
+					<h2>Adding
+						<span class="fragment highlight-green">Redux</span>
+					</h2>
+					<ul>
+						<li class="fragment">Will add an indirection to your problem</li>
+						<li class="fragment">Will shift the complexity in a different direction</li>
+						<li class="fragment">Could make your situation
+							<strong class="fragment highlight-red"> WORSE</strong>
+						</li>
+					</ul>
+					<p class="fragment">Is redux a must?</p>
+					<aside class="notes">
+						<h2>Question arises...</h2>
+						<p>Answer is: you dont have to</p>
+					</aside>
+				</section>
+				<section>
+					<h3>Asses your application</h2>
+						<ul>
+							<!-- <li>Is it more than 20 components?</li> -->
+							<li class="fragment">How many sibling Components have to communicate?</li>
+							<li class="fragment">Does child component contain state from parent component?</li>
+							<li class="fragment">How many different views need to share state?</li>
+						</ul>
+				</section>
+				<section>
+					<h2>Assess your team</h2>
+					<ul class="fragment">
+						<li>Do a proof of concept in a feature branch</li>
+						<li class="fragment">Explore how it solves the problem before diving into it</li>
+						<span class="fragment">
+							<li>Does team understand: Redux core concepts. </li>
+							<li>Can handle extra level of complexity</li>
+							<li>Immutabilty, pure function, etc.</li>
+						</span>
+					</ul>
+				</section>
+			</section>
+			<section>
+
+
 				<section>
 					<h2>Higher order component</h2>
 
