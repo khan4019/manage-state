@@ -15,10 +15,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<link rel="stylesheet" href="css/reveal.css">
-	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+	<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
 	<link rel="shortcut icon" href="./img/favicon2.ico" type="image/x-icon">
 	<!-- Theme used for syntax highlighting of code -->
 	<link rel="stylesheet" href="lib/css/zenburn.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<script src="https://use.typekit.net/jor2kyz.js"></script>
+	<script>try { Typekit.load({ async: true }); } catch (e) { }</script>
 
 	<!-- Printing and PDF exports -->
 	<script>
@@ -47,8 +51,9 @@
 			<section>
 				<h1>Manage state</h1>
 				<h5>of</h5>
-				<h3>a large React App</h3>
+				<h3>A Large React App</h3>
 				<p>
+					<br><br>
 					<!-- <small>by
 						<a href="https://twitter.com/Karinaislam2">Karina</a> and
 						<a href="https://jsdude.com">Jhankar</a>
@@ -62,13 +67,48 @@
 				<h2>TODO</h2>
 				<ul>
 					<li>add more about saga</li>
-					<li>add context api</li>
 					<li>update jokes</li>
 					<li>Update questions</li>
-					<li>finish up the document</li>
-					<li>move adding redux after the use case</li>
 					<li>put summary nicely</li>
 				</ul>
+			</section>
+			<section>
+				<section>
+					<h2>Who is</h2>
+					<h1>JS Dude?</h1>
+				</section>
+				<section>
+					<img src="./img/others/dude.jpeg" alt="">
+					<ul>
+						<li style="color:purple">
+							<strong>@jsdude005</strong>
+						</li>
+						<li>Organize Chicago JavaScript Meetup</li>
+						<li>Sr. Web Developer, Nielsen</li>
+						<li>React, Redux and JavaScript Trainer</li>
+						<li>Enjoy Learning, Talking about JavaScript</li>
+						<!-- <li>Chicago Code Camp in 2013 - 2018</li> -->
+					</ul>
+				</section>
+				<section>
+					<h2>Jump from 14,000ft </h2>
+					<img src="./img/others/jump.JPG" alt="">
+				</section>
+				<!-- <section>
+						<img src="./img/others/skydiving.JPG" alt="">
+					</section> -->
+				<section>
+					<h2>Marathon 2016, 2017</h2>
+					<img src="./img/others/marathon.jpg" alt="">
+				</section>
+				<section>
+					<h2>10,000 volts</h2>
+					<img src="./img/others/mudder.jpg" alt="">
+				</section>
+				<section>
+					<h4>international Javascript conference, London</h4>
+					<img src="./img/others/london.jpg" alt="">
+				</section>
 			</section>
 			<!-- <section>
 				<h2>Resources ok type</h2>
@@ -90,6 +130,7 @@
 					<li>What is State</li>
 					<li>5 scenarios to Manage state</li>
 					<li>Redux</li>
+					<li>Context Api</li>
 					<li>Redux-saga</li>
 				</ol>
 			</section>
@@ -103,8 +144,7 @@
 					<ul class="fragment">
 						<li>It's summer time</li>
 						<li class="fragment">You are sitting in the beach</li>
-						<li class="fragment">Under a large beach umbrella</li>
-						<li class="fragment">And your friend is grilling some steak</li>
+						
 					</ul>
 					<br>
 					<br>
@@ -118,8 +158,6 @@
 					<br>
 					<ul class="fragment">
 						<li>You are in a big Conference</li>
-						<li class="fragment">Talking in front of 30+ people</li>
-						<li class="fragment">Trying to explain what is state</li>
 						<li class="fragment">Everyone is staring at you</li>
 					</ul>
 					<br>
@@ -132,6 +170,14 @@
 					<p class="fragment">
 						<small>This means state of your mind changes based on the situation</small>
 					</p>
+					<aside class="notes">
+							<li class="fragment1">Under a large beach umbrella</li>
+							<li class="fragment1">And your friend is grilling some steak</li>
+							<br>
+
+						<li class="fragment1">Talking in front of 30+ people</li>
+						<li class="fragment1">Trying to explain what is state</li>
+					</aside>
 				</section>
 				<section>
 					<h2>So what is a state?</h2>
@@ -172,7 +218,7 @@
 			</section>
 			<section>
 				<section>
-					<h2>Think about an Application</h2>
+					<h2>Think about an App</h2>
 					<h6>
 						<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
 					</h6>
@@ -217,7 +263,7 @@
 							</ul>
 						</li>
 						<br>
-						<li class="fragment">Provided State
+						<li class="fragment">Provided State: Since React 16.3
 							<ul>
 								<li class="fragment">Each context has a provider and a consumer</li>
 								<li class="fragment">No need to pass context as prop-drilling</li>
@@ -225,6 +271,11 @@
 							</ul>
 						</li>
 					</ol>
+					
+				</section>
+				<section>
+					<h2>React States</h2>
+					<img src="./img/4StateOrdered.png" alt="">
 					<br>
 					<br>
 					<p>
@@ -233,17 +284,11 @@
 						</small>
 					</p>
 				</section>
-				<section>
-					<h2>React States</h2>
-					<img src="./img/4StateOrdered.png" alt="">
-				</section>
-
 			</section>
-
 			<section>
 				<section>
-					<h5>use case-1</h5>
-					<p>You are building from scratch</p>
+					<h3>Use Case-1</h3>
+					<h2>You are building from scratch</h2>
 					<br>
 					<h2 class="hide">Think in React</h2>
 				</section>
@@ -375,7 +420,7 @@ toggleProductInOrder(product) {
 					<ul class="fragment">
 						<li> Try to Avoid changing data you get from the API</li>
 						<li class="fragment">Handle Derived Property in Render</li>
-						<li class="fragment">Try to avoid 2 or more state change with one event</li>
+						<li class="fragment">Avoid 2 or more state change with one event</li>
 					</ul>
 					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
 componentDidMount() {
@@ -441,7 +486,7 @@ render() {
 				<section>
 					<h2>Digestible example</h2>
 					<p>Compute From states</p>
-					<pre class="fragment"><code  class="hljs javaScript jsx" data-trim>
+					<pre class="fragment"><code  class="hljs javaScript" data-trim>
 	class MyComponent extends Component {
 	  constructor(props) {
 	    super(props);
@@ -639,7 +684,7 @@ render() {
 			<section>
 
 				<section>
-					<h5>use Case - 2</h5>
+					<h3>Use Case - 2</h3>
 					<h2>You have a little mess</h2>
 				</section>
 				<section>
@@ -685,10 +730,11 @@ render() {
 						<small>None of these is a must to build an app</small>
 					</p>
 				</section>
-				<section data-background="./img/worse.jpg">
-					<h2>Adding
+				<section>
+					<h3>Adding
 						<span class="fragment highlight-green">Redux</span>
-					</h2>
+					</h3>
+					<img src="./img/worse.jpg" alt="">
 					<ul>
 						<li class="fragment">Will add an indirection to your problem</li>
 						<li class="fragment">Will shift the complexity in a different direction</li>
@@ -815,7 +861,7 @@ render() {
 			</section>
 			<section>
 				<section>
-					<h5>use Case-3</h5>
+					<h3>Use Case-3</h3>
 					<h3>State management library: Redux</h3>
 					<br>
 					<p>When you need to share state a lot</p>
@@ -895,7 +941,7 @@ render() {
 					<h2>But you didn't tell how state will change?</h2>
 				</section>
 				<section>
-					<h2 style="color:yellow">Actually state will not change</h2>
+					<h2>Actually state will not change</h2>
 					<h4 class="fragment">we will create a new state with the change</h4>
 					<pre class="hljs JavaScript fragment"><code>
 function add(x, y){
@@ -947,6 +993,13 @@ case ADD_TODO:
 						<li class="fragment">In root reducer you may combine multiple reducers into a single state tree</li>
 						<li class="fragment">Store saves the complete state tree returned by the root reducer</li>
 					</ul>
+					<br>
+					<br>
+					<p>
+						<small>
+							<a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux state management</a>
+						</small>
+					</p>
 				</section>
 				<section>
 					<h2>Basic Building Block</h2>
@@ -1165,9 +1218,9 @@ npm install --save react-redux
 			</section>
 			<section>
 				<section>
-					<h5>Use case -4</h5>
+					<h3>Use Case -4</h3>
 					<h2>Context API</h2>
-					<p>New cool kid in the corner since React 16</p>
+					<p>New cool kid in the corner since React 16.3</p>
 				</section>
 				<section>
 					<h2>App Level settings?</h2>
@@ -1215,7 +1268,7 @@ npm install --save react-redux
 						<li class="fragment">Dynamic Context</li>
 						<li class="fragment">Updating Context from a Nested Component</li>
 						<li class="fragment">Consuming Multiple Contexts</li>
-						<li class="fragment">Accessing Context in Lifecycle Methods</li>
+						<li class="fragment">Accessing Context in Life cycle Methods</li>
 						<li class="fragment">Consuming Context with a HOC
 						</li>
 						<li class="fragment">Forwarding Refs to Context Consumers</li>
@@ -1227,10 +1280,16 @@ npm install --save react-redux
 						</small>
 					</p>
 				</section>
+				<section>
+					<h2>Replace Redux by Context API</h2>
+					<br>
+					<br>
+					<p><small><a href="https://medium.freecodecamp.org/replacing-redux-with-the-new-react-context-api-8f5d01a00e8c">Replacing Redux with the new React context API</a></small></p>
+				</section>
 			</section>
 			<section>
 				<section>
-					<h5>use case-5</h5>
+					<h3>Use Case-5</h3>
 					<h2>Redux Saga</h2>
 					<p>When you need to handle async call with Redux</p>
 				</section>
