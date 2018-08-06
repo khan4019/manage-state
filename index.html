@@ -198,7 +198,7 @@
 						</li>
 						<aside class="notes">
 							<p>State still within the component. you pass state and state changing event handlers</p>
-							<p>to the child components.  </p>
+							<p>to the child components. </p>
 						</aside>
 					</ol>
 					<p>
@@ -332,28 +332,40 @@
 					<h3>Start with a mockup</h3>
 					<img src="./img/ema-john/product.png" alt="">
 					<!-- <img src="./img/mockup3.png" alt=""> -->
-					
+
 				</section>
 				<section>
 					<h2>Data you have</h2>
 					<pre><code class="hljs" data-trim contenteditable>
 							[
 							  {price: "$649.99", stock: 12, name: "Lenovo", ...},
-							  {price: "$1999.99", stock: 8, name: "Mac the money sucker",...},
+							  {price: "$1999.99", stock:8, name: "Mac the money sucker",...},
 							  {price: "$29.99", stock: 12, name: "Dongle", ...},
 							  {price: "$699.99", stock: 1, name: "iPod Touch", ...},
 							  {price: "$999.99", stock: 31, name: "iPhone X", ...},
 							  {price: "$199.99", stock: 0, name: "Nexus 7", ...},
 							];
 												</code></pre>
-												<br>
-												<p>
-													<small>
-														<a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a>
-													</small>
-												</p>
+					<br>
+					<p>
+						<small>
+							<a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a>
+						</small>
+					</p>
 				</section>
 				<section>
+					<img src="./img/ema-john/loadData1.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/loadData2.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/loadData3.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/loadData4.png" alt="">
+				</section>
+				<!-- <section>
 					<h4>You started loading data from the API</h4>
 					<pre><code class="hljs jsx" data-trim contenteditable>
 componentDidMount() {
@@ -373,14 +385,14 @@ componentDidMount() {
 }
 					</code></pre>
 					<p class="fragment">Adding two lists in the state</p>
-					<!-- <p><small class="fragment">(this is simplified state)</small></p> -->
+					<p><small class="fragment">(this is simplified state)</small></p>
 					<aside class="notes">
 						<p>You started building part of it</p>
 					</aside>
-				</section>
-				<section>
+				</section> -->
+				<!-- <section>
 					<img src="./img/render1.png" alt="">
-					<!-- <pre><code class="hljs xml">
+					<pre><code class="hljs xml">
 render() {
   return (
     <ul>
@@ -394,9 +406,33 @@ render() {
     </ul>
   );
 }
-					</code></pre> -->
+					</code></pre>
+				</section> -->
+				<section>
+					<h2>Render State</h2>
+					<img src="./img/ema-john/renderProduct.png" alt="">
 				</section>
 				<section>
+					<img src="./img/ema-john/renderProduct1.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/renderProduct2.png" alt="">
+				</section>
+				<section>
+					<h4>Handle a product toggle</h4>
+					<img src="./img/ema-john/toggle00.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/toggle1.png" alt="">
+				</section>
+
+				<section>
+					<img src="./img/ema-john/toggle2.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/toggle3.png" alt="">
+				</section>
+				<!-- <section>
 					<h4>Handle a product toggle</h4>
 					<pre><code class="hljs es6 jsx" data-trim contenteditable>
 toggleProductInOrder(product) {
@@ -414,7 +450,7 @@ toggleProductInOrder(product) {
     });
 }
 					</code></pre>
-				</section>
+				</section> -->
 				<section>
 					<h4>Can we make state simpler?</h4>
 					<ul class="fragment">
