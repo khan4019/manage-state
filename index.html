@@ -66,7 +66,6 @@
 					<li>update jokes</li>
 					<li>Update questions</li>
 					<li>finish up the document</li>
-					<li>Building from scratch : ema-john example</li>
 					<li>move adding redux after the use case</li>
 					<li>put summary nicely</li>
 				</ul>
@@ -256,14 +255,14 @@
 				</section>
 				<section>
 					<h2>Data you have</h2>
-					<pre><code class="hljs" data-trim contenteditable>
+					<pre><code class="hljs javascript" data-trim contenteditable>
 							[
-							  {price: "$649.99", stock: 12, name: "Lenovo", ...},
-							  {price: "$1999.99", stock:8, name: "Mac the money sucker",...},
-							  {price: "$29.99", stock: 12, name: "Dongle", ...},
-							  {price: "$699.99", stock: 1, name: "iPod Touch", ...},
-							  {price: "$999.99", stock: 31, name: "iPhone X", ...},
-							  {price: "$199.99", stock: 0, name: "Nexus 7", ...},
+							  {name: "Lenovo", price: "$649.99", stock: 12, ...},
+							  {name: "Mac the money sucker",price: "$1999.99", stock:8, ...},
+							  {name: "Dongle", price: "$29.99", stock: 12, ...},
+							  {name: "iPod Touch", price: "$699.99", stock: 1, ...},
+							  {name: "iPhone X", price: "$999.99", stock: 31, ...},
+							  {name: "Nexus 7", price: "$199.99", stock: 0, ...},
 							];
 												</code></pre>
 					<br>
@@ -639,7 +638,7 @@ render() {
 			</section>
 			<section>
 
-			<section>
+				<section>
 					<h5>use Case - 2</h5>
 					<h2>You have a little mess</h2>
 				</section>
@@ -726,9 +725,7 @@ render() {
 				</section>
 			</section>
 			<section>
-
-
-				<section>
+				<!-- <section>
 					<h2>Higher order component</h2>
 
 					<ol>
@@ -753,7 +750,7 @@ render() {
 					    }
 					}
 					</code></pre>
-				</section>
+				</section> -->
 				<section>
 					<h2>Lighter State Management</h2>
 					<ul>
@@ -960,13 +957,13 @@ case ADD_TODO:
 						<li>Reducer</li>
 					</ul>
 				</section>
-				<section>
+				<!-- <section>
 					<h2>Implement Redux</h2>
 					<pre><code class="hljs javascript">
 npm install --save redux
 npm install --save react-redux
 							</code></pre>
-				</section>
+				</section> -->
 				<section>
 					<img src="./img/redux/containerComponent.png" alt="">
 					<p>
@@ -991,113 +988,97 @@ npm install --save react-redux
 						</small>
 					</p>
 				</section>
-				<section>
-					<img src="./img/fun/sleeping6.jpg" alt="">
-				</section>
-				<section>
-					<h2>Quiz</h2>
-					<br>
-					<br>
-					<p class="fragment">What's the name of the other speaker?</p>
-				</section>
-			</section>
-			<section>
-				<section>
-					<h5>Use case -4</h5>
-					<h2>Scale with Redux</h2>
-					<p>When you are building really large App</p>
-				</section>
-				<section>
-					<h2>Redux is good..</h2>
-					<ol>
-						<li>Keep an history of your app</li>
-						<li>Time-travel over the actions </li>
-						<li>Even store the app state in the local storage</li>
-					</ol>
-					<p class="fragment">But it's not a silver bullet</p>
-					<br>
-					<p>
-						<small>
-							<a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux Dev tool</a>
-						</small>
-					</p>
-
-					<aside class="notes">
-						<p>When you have issues with your Redux state, chances are you may have issues maintaining your entire application </p>
-					</aside>
-				</section>
-				<section>
-					<img src="./img/fun/lawnMower.jpg" alt="">
-					<aside class="notes">
-						<p>Framework's job is to make your life easier</p>
-					</aside>
-				</section>
-
-				<section>
-					<h2>Messed up with Redux</h2>
-					<ul class="fragment">
-						<li>Do you have too many global action creators?</li>
-						<li>Do you have a huge reducer that manages everything?</li>
-						<li>Do you have conflicts between your actions or reducers that modify the same piece of state?</li>
-					</ul>
-					<aside class="notes">
-						<p>You can tell when an application has a good architecture when it’s divided into several small features that can be
-							easily extracted and published on a package manager and reused by another application</p>
-						<p>. If you decide you want to remove an entire feature of your app, you can simply unplug it and delete that entire folder
-							which contains the container and presentational components, reducers, actions, resources etc, and you know it will
-							be fine because the state is not coupled to any other feature. Quick, clean and easy.</p>
-					</aside>
-					<br>
-					<br>
-					<p>
-						<small>
-							<a href="https://medium.com/@alexmngn/how-to-use-redux-on-highly-scalable-javascript-applications-4e4b8cb5ef38">redux scaleable architecure</a>
-						</small>
-					</p>
-				</section>
-				<section>
-					<img src="./img/fun/sucks.jpg" alt="">
-				</section>
-				<section>
-					<h4>Consider</h4>
-					<ul class="fragment">
-						<li>Redux actions creators and reducers with feature</li>
-						<li>Create Data module for data that is not tightly bound to a container component</li>
-					</ul>
-					<ul>
-						<li class="fragment">Put distinct domains into sub-store and split reducers</li>
-						<div class="fragment">
-							<li>Isolate network communication in one place</li>
-							<li>Use Redux-saga or thunk (middleware)</li>
-						</div>
-						<div class="fragment">
-							<li>Use
-								<a href="https://gist.github.com/abhiaiyer91/aaf6e325cf7fc5fd5ebc70192a1fa170">selector</a> to pass bits of state to components</li>
-							<li>Consider
-								<a href="https://github.com/reactjs/reselect"> reselect </a> to optimize performance</li>
-						</div>
-					</ul>
-					<br>
-					<p>
-						<small>
-							<a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a>,
-							<a href="https://hackernoon.com/selector-pattern-painless-redux-store-destructuring-bfc26b72b9ae">Destructuring react store</a>
-						</small>
-					</p>
-					<!-- <p>
-							<small>
-								<a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a>
-							</small>
-						</p> -->
-				</section>
-				<!-- <section>
-					<p>Is Redux more performant? No. In fact, it gets slightly slower with each new action that must be handled.</p>
-					<p>
-						Is Redux simpler? Certainly not.</p>
-						<p><a href="https://twitter.com/tjholowaychuk/status/957853652483416064">simple state</a></p>
+				<!-- <section> 
+						<h2>Redux is good..</h2>
+						<ol>
+							<li>Keep an history of your app</li>
+							<li>Time-travel over the actions </li>
+							<li>Even store the app state in the local storage</li>
+						</ol>
+						<p class="fragment">But it's not a silver bullet</p>
 						<br>
-						<p><a href="https://hackernoon.com/redesigning-redux-b2baee8b8a38">Redesigning Redux</a></p>
-				</section> -->
+						<p>
+							<small>
+								<a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux Dev tool</a>
+							</small>
+						</p>
+	
+						<aside class="notes">
+							<p>When you have issues with your Redux state, chances are you may have issues maintaining your entire application </p>
+						</aside>
+					</section>
+					<section>
+						<img src="./img/fun/lawnMower.jpg" alt="">
+						<aside class="notes">
+							<p>Framework's job is to make your life easier</p>
+						</aside>
+					</section>
+	
+					<section>
+						<h2>Messed up with Redux</h2>
+						<ul class="fragment">
+							<li>Do you have too many global action creators?</li>
+							<li>Do you have a huge reducer that manages everything?</li>
+							<li>Do you have conflicts between your actions or reducers that modify the same piece of state?</li>
+						</ul>
+						<aside class="notes">
+							<p>You can tell when an application has a good architecture when it’s divided into several small features that can be
+								easily extracted and published on a package manager and reused by another application</p>
+							<p>. If you decide you want to remove an entire feature of your app, you can simply unplug it and delete that entire folder
+								which contains the container and presentational components, reducers, actions, resources etc, and you know it will
+								be fine because the state is not coupled to any other feature. Quick, clean and easy.</p>
+						</aside>
+						<br>
+						<br>
+						<p>
+							<small>
+								<a href="https://medium.com/@alexmngn/how-to-use-redux-on-highly-scalable-javascript-applications-4e4b8cb5ef38">redux scaleable architecure</a>
+							</small>
+						</p>
+					</section>
+					<section>
+						<img src="./img/fun/sucks.jpg" alt="">
+					</section>
+					<section>
+						<h4>Consider</h4>
+						<ul class="fragment">
+							<li>Redux actions creators and reducers with feature</li>
+							<li>Create Data module for data that is not tightly bound to a container component</li>
+						</ul>
+						<ul>
+							<li class="fragment">Put distinct domains into sub-store and split reducers</li>
+							<div class="fragment">
+								<li>Isolate network communication in one place</li>
+								<li>Use Redux-saga or thunk (middleware)</li>
+							</div>
+							<div class="fragment">
+								<li>Use
+									<a href="https://gist.github.com/abhiaiyer91/aaf6e325cf7fc5fd5ebc70192a1fa170">selector</a> to pass bits of state to components</li>
+								<li>Consider
+									<a href="https://github.com/reactjs/reselect"> reselect </a> to optimize performance</li>
+							</div>
+						</ul>
+						<br>
+						<p>
+							<small>
+								<a href="https://redux.js.org/recipes/structuring-reducers/splitting-reducer-logic">slice reducer</a>,
+								<a href="https://hackernoon.com/selector-pattern-painless-redux-store-destructuring-bfc26b72b9ae">Destructuring react store</a>
+							</small>
+						</p>
+						 <p>
+								<small>
+									<a href="https://blog.mapbox.com/redux-for-state-management-in-large-web-apps-c7f3fab3ce9b">Redux for state management</a>
+								</small>
+							</p> 
+					</section>
+					<section>
+						<p>Is Redux more performant? No. In fact, it gets slightly slower with each new action that must be handled.</p>
+						<p>
+							Is Redux simpler? Certainly not.</p>
+							<p><a href="https://twitter.com/tjholowaychuk/status/957853652483416064">simple state</a></p>
+							<br>
+							<p><a href="https://hackernoon.com/redesigning-redux-b2baee8b8a38">Redesigning Redux</a></p>
+					</section> -->
 				<section>
 					<h2>Is Redux the only option?</h2>
 				</section>
@@ -1170,6 +1151,81 @@ npm install --save react-redux
 						</li>
 					</ul>
 
+				</section>
+
+				<section>
+					<img src="./img/fun/sleeping6.jpg" alt="">
+				</section>
+				<section>
+					<h2>Quiz</h2>
+					<br>
+					<br>
+					<p class="fragment">How many guys were sleeping in the class room?</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h5>Use case -4</h5>
+					<h2>Context API</h2>
+					<p>New cool kid in the corner since React 16</p>
+				</section>
+				<section>
+					<h2>App Level settings?</h2>
+					<ul>
+						<li>Pass data through the component tree?</li>
+						<li class="fragment">Pass data manually every level as props</li>
+						<li class="fragment">Like: Current locale, theme, user Context</li>
+						<li class="fragment">Not very developer friendly.</li>
+					</ul>
+				</section>
+				<section>
+					<img src="./img/context1.png" alt="">
+				</section>
+				<section>
+					<h2>Context</h2>
+					<ul>
+						<li>Gives you the power to pass data to child component</li>
+						<li class="fragment">Without passing props down manually at every level</li>
+						<li class="fragment">Share values like these between components</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Create Context</h2>
+					<img src="./img/context2.png" alt="">
+					<img class="fragment" src="./img/context3.png" alt="">
+				</section>
+				<section>
+					<img src="./img/context4.png" alt="">
+				</section>
+				<section>
+					<h2>API</h2>
+					<img src="./img/context5.png" alt="" class="fragment">
+					<img src="./img/context6.png" alt="" class="fragment">
+					<img src="./img/context7.png" alt="" class="fragment">
+					<p class="fragment">
+						<small>Don’t use context just to avoid passing props a few levels down.</small>
+					</p>
+					<aside class="notes">
+						<p>Stick to cases where the same data needs to be accessed in many components at multiple levels.</p>
+					</aside>
+				</section>
+				<section>
+					<h2>Advanced Usage</h2>
+					<ul>
+						<li class="fragment">Dynamic Context</li>
+						<li class="fragment">Updating Context from a Nested Component</li>
+						<li class="fragment">Consuming Multiple Contexts</li>
+						<li class="fragment">Accessing Context in Lifecycle Methods</li>
+						<li class="fragment">Consuming Context with a HOC
+						</li>
+						<li class="fragment">Forwarding Refs to Context Consumers</li>
+					</ul>
+					<br>
+					<p>
+						<small>
+							<a href="https://reactjs.org/docs/context.html">Context API</a>
+						</small>
+					</p>
 				</section>
 			</section>
 			<section>
