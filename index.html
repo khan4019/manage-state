@@ -66,6 +66,8 @@
 					<li>update jokes</li>
 					<li>Update questions</li>
 					<li>finish up the document</li>
+					<li>Building from scratch : ema-john example</li>
+					<li>move adding redux after the use case</li>
 				</ul>
 			</section>
 			<!-- <section>
@@ -138,13 +140,14 @@
 						<li>That might change</li>
 						<li class="fragment">Like: your mood, your confidence level</li>
 						<!-- <li class="fragment">Or London Weather: winter, rain, 2 weeks of summer!</li> -->
-						<li class="fragment">Or your feelings about your partner</li>
+						<!-- <li class="fragment">Or your feelings about your partner</li> -->
+						<li class="fragment">Or types of cheese you add in your sandwich</li>
 					</ul>
 				</section>
-				<!-- <section>
+				<section>
 					<h2>What is changing in this pic?</h2>
 					<img src="./img/mario.gif" alt="">
-				</section> -->
+				</section>
 				<!-- <section>
 					<h3>In an application</h3>
 					<p class="fragment">A lot of information stored in the memory</p>
@@ -159,62 +162,6 @@
 						<small>All the stored information, at a given instant in time, creates the application state.</small>
 					</p>
 				</section> -->
-				<section>
-					<h3>In a React App</h3>
-					<p class="fragment">You can think of 4 types of state</p>
-					<ol>
-						<li class="fragment">Component State
-							<ul>
-								<li class="fragment">Within that specific component</li>
-								<li class="fragment">Can only be updated within that component </li>
-								
-							</ul>
-						</li>
-						<br>
-						<li class="fragment">Smart Component: HOC
-							<ul>
-								<li class="fragment">Lift up state to a parent Component</li>
-								<li class="fragment">Any component, anywhere in the app can access</li>
-								<li class="fragment">Container vs Presentation Component</li>
-							</ul>
-						</li>
-					</ol>
-					<p>
-						<small>
-							<a href="https://codeburst.io/how-to-manage-ui-state-with-redux-24deb6cf0d57">React States</a>
-						</small>
-					</p>
-				</section>
-				<section>
-					<h2>State in a React App</h2>
-					<ol start="3">
-						<li class="fragment">Application State: Global State
-							<ul>
-								<li class="fragment">Like: Session storage/Redux, etc.</li>
-								<li class="fragment">Or simply think it like a database</li>
-								<li class="fragment">Any component, anywhere in the app can access</li>
-							</ul>
-						</li>
-						<br>
-						<li class="fragment">Provided State
-							<ul>
-								<li class="fragment">Each context has a provider and a consumer</li>
-								<li class="fragment">No need to pass context as prop-drilling</li>
-								<li class="fragment">Available anywhere under the component tree</li>
-							</ul>
-						</li>
-					</ol>
-					<br>
-					<p>
-						<small>
-							<a href="https://itnext.io/react-state-management-patterns-908325dbb8f3">React State management pattern</a>
-						</small>
-					</p>
-				</section>
-				<section>
-					<h2>React States</h2>
-					<img src="./img/4StateOrdered.png" alt="">
-				</section>
 				<!-- <section>
 					<h2>Stateless</h2>
 					<p>I've seen and talked to developers lately who are obsessed with statelessness to the point of distraction. Its nice
@@ -230,6 +177,67 @@
 						<a target="_blank" href="https://ema-john.firebaseapp.com/shop">ema-john</a>
 					</h6>
 				</section>
+				<section>
+					<h3>In a React App</h3>
+					<p class="fragment">You can think of 4 types of state</p>
+					<ol>
+						<li class="fragment">Component State
+							<ul class="fragment">
+								<li>State stays within the component</li>
+								<li class="fragment1">Can only be updated within that component </li>
+
+							</ul>
+						</li>
+						<br>
+						<li class="fragment">Smart Component: HOC
+							<ul class="fragment">
+								<li>State still stays within the component</li>
+								<li class="fragment1">Pass state, event handlers via Props</li>
+								<li class="fragment">Container vs Presentation Component</li>
+							</ul>
+						</li>
+						<aside class="notes">
+							<p>State still within the component. you pass state and state changing event handlers</p>
+							<p>to the child components.  </p>
+						</aside>
+					</ol>
+					<p>
+						<small>
+							<a href="https://codeburst.io/how-to-manage-ui-state-with-redux-24deb6cf0d57">React States</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<h2>State in a React App</h2>
+					<ol start="3">
+						<li class="fragment">Application State: Global State
+							<ul>
+								<li class="fragment">Like: Session storage/Redux, database, etc.</li>
+								<li class="fragment">Any component, anywhere in the app can access</li>
+							</ul>
+						</li>
+						<br>
+						<li class="fragment">Provided State
+							<ul>
+								<li class="fragment">Each context has a provider and a consumer</li>
+								<li class="fragment">No need to pass context as prop-drilling</li>
+								<li class="fragment">Available anywhere under the component tree</li>
+							</ul>
+						</li>
+					</ol>
+					<br>
+					<br>
+					<p>
+						<small>
+							<a href="https://itnext.io/react-state-management-patterns-908325dbb8f3">React State management pattern</a>
+						</small>
+					</p>
+				</section>
+				<section>
+					<h2>React States</h2>
+					<img src="./img/4StateOrdered.png" alt="">
+				</section>
+
 			</section>
 			<section>
 				<section>
@@ -322,28 +330,33 @@
 				</section>
 				<section>
 					<h3>Start with a mockup</h3>
-					<img src="./img/mockup3.png" alt="">
+					<img src="./img/ema-john/product.png" alt="">
+					<!-- <img src="./img/mockup3.png" alt=""> -->
+					
+				</section>
+				<section>
+					<h2>Data you have</h2>
 					<pre><code class="hljs" data-trim contenteditable>
-[
-  {price: "$49.99", stocked: true, name: "Football"},
-  {price: "$9.99", stocked: true, name: "Baseball"},
-  {price: "$29.99", stocked: false, name: "Basketball"},
-  {price: "$99.99", stocked: true, name: "iPod Touch"},
-  {price: "$399.99", stocked: false, name: "iPhone 5"},
-  {price: "$199.99", stocked: true, name: "Nexus 7"},
-];
-					</code></pre>
-					<br>
-					<p>
-						<small>
-							<a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a>
-						</small>
-					</p>
+							[
+							  {price: "$649.99", stock: 12, name: "Lenovo", ...},
+							  {price: "$1999.99", stock: 8, name: "Mac the money sucker",...},
+							  {price: "$29.99", stock: 12, name: "Dongle", ...},
+							  {price: "$699.99", stock: 1, name: "iPod Touch", ...},
+							  {price: "$999.99", stock: 31, name: "iPhone X", ...},
+							  {price: "$199.99", stock: 0, name: "Nexus 7", ...},
+							];
+												</code></pre>
+												<br>
+												<p>
+													<small>
+														<a href="https://reactjs.org/docs/thinking-in-react.html">Think in React</a>
+													</small>
+												</p>
 				</section>
 				<section>
 					<h4>You started loading data from the API</h4>
 					<pre><code class="hljs jsx" data-trim contenteditable>
-componentWillMount() {
+componentDidMount() {
   Promise.all([
     api.shop.getProducts(),
     api.shop.getCurrentOrder()
@@ -410,7 +423,7 @@ toggleProductInOrder(product) {
 						<li class="fragment">Try to avoid 2 or more state change with one event</li>
 					</ul>
 					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
-componentWillMount() {
+componentDidMount() {
   Promise.all([ 
     api.shop.getProducts(), 
     api.shop.getCurrentOrder()
