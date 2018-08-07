@@ -53,25 +53,17 @@
 				<h5>of</h5>
 				<h3>A Large React App</h3>
 				<p>
+					<small>by
+						<!-- <a href="https://twitter.com/Karinaislam2">Karina</a> and -->
+						<a href="https://twitter.com/jsdude005">@JSDude005</a>
+					</small>
+					<br>	
 					<br>
 					<br>
-					<!-- <small>by
-						<a href="https://twitter.com/Karinaislam2">Karina</a> and
-						<a href="https://jsdude.com">Jhankar</a>
-					</small> -->
 					<small>
 						<a href="http://thatjsdude.com/">www.thatJSDude.com</a>
 					</small>
 				</p>
-			</section>
-			<section>
-				<h2>TODO</h2>
-				<ul>
-					<li>add more about saga</li>
-					<li>update jokes</li>
-					<li>Update questions</li>
-					<li>put summary nicely</li>
-				</ul>
 			</section>
 			<section>
 				<section>
@@ -85,10 +77,11 @@
 							<strong>@jsdude005</strong>
 						</li>
 						<li>Organize Chicago JavaScript Meetup</li>
-						<li>Sr. Web Developer, Nielsen</li>
+						<!-- <li>Sr. Web Developer, Nielsen</li> -->
 						<li>React, Redux and JavaScript Trainer</li>
-						<li>Enjoy Learning, Talking about JavaScript</li>
-						<!-- <li>Chicago Code Camp in 2013 - 2018</li> -->
+						<li>App to make learning fun again</li>
+						<!-- <li>Enjoy Learning, Talking about JavaScript</li> -->
+						<!-- <li>That Conference  Talk 2013 - 2018</li> -->
 					</ul>
 				</section>
 				<section>
@@ -129,10 +122,11 @@
 				<h2>We will cover</h2>
 				<ol>
 					<li>What is State</li>
-					<li>4 scenarios to Manage state</li>
-					<li>Redux</li>
+					<li>4 types of React state</li>
+					<li>5 Use cases to Manage state</li>
+					<li>Redux Core Concepts</li>
 					<li>Context Api</li>
-					<li>Redux-saga</li>
+					<li>And we will have fun...</li>
 				</ol>
 			</section>
 			<section>
@@ -706,6 +700,12 @@ toggleProductInOrder(product) {
 					<img src="./img/ema-john/header.png" alt="">
 				</section>
 				<section>
+					<img src="./img/ema-john/shop.png" alt="">
+				</section>
+				<section>
+					<img src="./img/ema-john/review.png" alt="">
+				</section>
+				<section>
 					<h2>More features mean...</h2>
 					<ul class="fragment">
 						<li>More components</li>
@@ -977,12 +977,12 @@ add(1, 2); // WILL ALWAYS output 3
 					<h2>reducer</h2>
 					<ul>
 						<li>Actions describe the fact that something happened</li>
-						<li>Action don't specify how the application's state should change</li>
+						<li class="fragment">Action don't specify how the application's state should change</li>
 						<li class="fragment">How state will change will be defined by
 							<strong>reducer</strong>
 						</li>
 					</ul>
-					<pre class=""><code>
+					<pre class="fragment"><code>
 case ADD_TODO:
   return [
   ...todos,
@@ -1232,7 +1232,7 @@ npm install --save react-redux
 			<section>
 				<section>
 					<h3>Use Case -5</h3>
-					<h2>Context API</h2>
+					<h2>Sharing Context</h2>
 					<p>New cool kid in the corner since React 16.3</p>
 				</section>
 				<section>
@@ -1241,7 +1241,7 @@ npm install --save react-redux
 						<li>Pass data through the component tree?</li>
 						<li class="fragment">Pass data manually every level as props</li>
 						<li class="fragment">Like: Current locale, theme, user Context</li>
-						<li class="fragment">Not very developer friendly.</li>
+						<!-- <li class="fragment">Not very developer friendly.</li> -->
 					</ul>
 				</section>
 				<section>
@@ -1294,7 +1294,10 @@ npm install --save react-redux
 					</p>
 				</section>
 				<section>
-					<h2>Replace Redux by Context API</h2>
+					<h2>Use Context as State Manager</h2>
+					<br>
+					<br>
+					<p><a href="https://github.com/didierfranc/react-waterfall">React Waterfall</a></p>
 					<br>
 					<br>
 					<p>
@@ -1304,7 +1307,7 @@ npm install --save react-redux
 					</p>
 				</section>
 			</section>
-			<section>
+			<!-- <section>
 				<section>
 					<h3>Use Case-5</h3>
 					<h2>Redux Saga</h2>
@@ -1331,7 +1334,7 @@ npm install --save react-redux
 						<li>Can access redux state</li>
 						<li>Can dispatch redux actions</li>
 					</ul>
-					<!-- <small class="hide">easier to manage, more efficient to execute, simple to test, and better at handling failures.</small> -->
+					<small class="hide">easier to manage, more efficient to execute, simple to test, and better at handling failures.</small>
 				</section>
 				<section>
 					<h2>ES6 Generator</h2>
@@ -1437,7 +1440,7 @@ npm install --save react-redux
 						<li>Testing Saga</li>
 					</ul>
 				</section>
-				<!-- <section>
+				<section>
 					<h2>Pros and Cons</h2>
 					<ul>
 						<li>Saga: easy to test sagas as call() returns a pure object</li>
@@ -1453,8 +1456,8 @@ npm install --save react-redux
 					<p>
 						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">saga vs thunk</a>
 					</p>
-				</section> -->
-			</section>
+				</section>
+			</section> -->
 			<section>
 				<section>
 					<h1>Learn New thing</h1>
@@ -1470,13 +1473,13 @@ npm install --save react-redux
 				</section>
 				<section>
 					<p>
-						<a href="http://thatjsdude.com/workshops/react/">thatjsdude.com/workshops/react</a>
+						<a target="_blank" href="http://thatjsdude.com/">thatjsdude.com</a>
 					</p>
 					Email:
 					<span>khan4019@gmail.com</span>
 				</section>
 			</section>
-			<section>
+			<!-- <section>
 				<h2>References</h2>
 				<ul>
 					<li>
@@ -1504,12 +1507,12 @@ npm install --save react-redux
 						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">Saga vs thunk</a>
 					</li>
 				</ul>
-			</section>
+			</section> -->
 			<section>
 				<section>
 					<h2>Free tip</h2>
 				</section>
-				<!-- <section>
+				<section>
 					<p>Tight on food budget</p>
 					<img class="fragment" src="./img/banana.jpg" alt="">
 				</section>
@@ -1517,14 +1520,26 @@ npm install --save react-redux
 					<img src="./img/banana-single.jpg" alt="">
 				</section>
 				<section>
-					<p>Want to save even more...</p>
+					<p>Want to save more...</p>
 					<img class="fragment" src="./img/meetup.jpg" alt="">
 				</section>
 				<section>
-					<img src="./img/gym.jpg" alt="">
-				</section> -->
-
+					<p>Save even more...</p>
+					<img class="fragment" src="./img/tshirt.jpeg" alt="">
+				</section>
 				<section>
+					<p>Ultimate saver...</p>
+					<img class="fragment" src="./img/gym.jpg" alt="">
+					<aside class="notes">
+						<p>Work extra hour in office...</p>
+						<p>You can stay in the office</p>
+						<p>If you need to take a shower once in a month...</p>
+						<p>get a free pass from LA Fitness or any other gym</p>
+					</aside>
+				</section>
+			</section>
+
+				<!-- <section>
 					<h4>4 Steps</h4>
 					<h2>to Appear Smart</h2>
 					<h3>in a Meeting</h3>
@@ -1585,7 +1600,7 @@ npm install --save react-redux
 					</ol>
 					<br>
 					<a href="http://www.wikihow.com/Look-Busy-at-Work-Without-Really-Working">Look busy</a>
-				</section>
+				</section> -->
 			</section>
 			<!-- <section>
 				<h2>Learn React</h2>
