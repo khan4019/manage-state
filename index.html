@@ -53,7 +53,8 @@
 				<h5>of</h5>
 				<h3>A Large React App</h3>
 				<p>
-					<br><br>
+					<br>
+					<br>
 					<!-- <small>by
 						<a href="https://twitter.com/Karinaislam2">Karina</a> and
 						<a href="https://jsdude.com">Jhankar</a>
@@ -144,7 +145,7 @@
 					<ul class="fragment">
 						<li>It's summer time</li>
 						<li class="fragment">You are sitting in the beach</li>
-						
+
 					</ul>
 					<br>
 					<br>
@@ -171,9 +172,9 @@
 						<small>This means state of your mind changes based on the situation</small>
 					</p>
 					<aside class="notes">
-							<li class="fragment1">Under a large beach umbrella</li>
-							<li class="fragment1">And your friend is grilling some steak</li>
-							<br>
+						<li class="fragment1">Under a large beach umbrella</li>
+						<li class="fragment1">And your friend is grilling some steak</li>
+						<br>
 
 						<li class="fragment1">Talking in front of 30+ people</li>
 						<li class="fragment1">Trying to explain what is state</li>
@@ -196,7 +197,7 @@
 				</section>
 				<section>
 					<h2>What does changes in Facebook/Youtube?</h2>
-					<p>Due to  user interaction.</p>
+					<p>Due to user interaction.</p>
 				</section>
 				<!-- <section>
 					<h3>In an application</h3>
@@ -228,8 +229,10 @@
 					</h6>
 				</section>
 				<section>
-					<h3>In a React App</h3>
-					<p class="fragment">You can think of 4 types of state</p>
+					<h2>In a React App</h2>
+					<p class="fragment">
+						<small>You can think of 4 types of state</small>
+					</p>
 					<ol>
 						<li class="fragment">Component State
 							<ul class="fragment">
@@ -241,9 +244,9 @@
 						<br>
 						<li class="fragment">Smart Component: HOC
 							<ul class="fragment">
-								<li>State still stays within the component</li>
-								<li class="fragment1">Pass state, event handlers via Props</li>
-								<li class="fragment">Container vs Presentation Component</li>
+								<li>Container vs Presentation Component</li>
+								<li class="fragment">State still stays within the component</li>
+								<li class="fragment">Pass state, event handlers via Props</li>
 							</ul>
 						</li>
 						<aside class="notes">
@@ -275,7 +278,7 @@
 							</ul>
 						</li>
 					</ol>
-					
+
 				</section>
 				<section>
 					<h2>React States</h2>
@@ -291,8 +294,8 @@
 			</section>
 			<section>
 				<section>
-					<h3>Use Case-1</h3>
-					<h2>You are building from scratch</h2>
+					<h3>Use Case - 1</h3>
+					<h2>Building from scratch</h2>
 					<br>
 					<h2 class="hide">Think in React</h2>
 				</section>
@@ -307,7 +310,7 @@
 					<pre><code class="hljs javascript" data-trim contenteditable>
 							[
 							  {name: "Lenovo", price: "$649.99", stock: 12, ...},
-							  {name: "Mac the money sucker",price: "$1999.99", stock:8, ...},
+							  {name:"Mac the money sucker",price:"$1999.99",stock:8, ...},
 							  {name: "Dongle", price: "$29.99", stock: 12, ...},
 							  {name: "iPod Touch", price: "$699.99", stock: 1, ...},
 							  {name: "iPhone X", price: "$999.99", stock: 31, ...},
@@ -388,9 +391,7 @@ render() {
 				</section>
 				<section>
 					<h4>Handle a product toggle</h4>
-					<img src="./img/ema-john/toggle00.png" alt="">
-				</section>
-				<section>
+
 					<img src="./img/ema-john/toggle1.png" alt="">
 				</section>
 
@@ -436,11 +437,12 @@ componentDidMount() {
     this.setState({ products, order });
   });
 }
-
-getSelected(product) {
-  return this.state.order.find(p => p.id === product.id);
-}
 					</code></pre>
+					<pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
+						getSelected(product) {
+						  return this.state.order.find(p => p.id === product.id);
+						}
+											</code></pre>
 
 					<!-- <pre class="fragment"><code class="hljs javascript es6" data-trim contenteditable>
 render() {
@@ -466,23 +468,22 @@ render() {
 					</p>
 				</section>
 				<section>
-					<h2>Toggle  Product</h2>
+					<h2>Toggle Product</h2>
 					<br>
 					<pre><code class="hljs" data-trim contenteditable>
-							toggleProductInOrder(product) {
-							  const order = this.state.order;
-							  const selectedProduct = this.getSelected(product);							
-							  
-							  //Updating an order is just adding or removing on item
-							  const updatedOrder = selectedProduct
-							   ? without(order, product) : concat(order, product) ;							
-							 
-							   return api.shop.updateOrder(updatedOrder)
-							   .then(newOrder => {
-							     this.setState({ order: newOrder }); //update one state
-							  });
-							}							
-					</code></pre>
+toggleProductInOrder(product) {
+  const order = this.state.order;
+  const selectedProduct = this.getSelected(product);
+	
+  //Either add or remove the item in the order list
+  const updatedOrder = selectedProduct
+	? without(order, product) : concat(order, product) ;
+	
+  return api.shop.updateOrder(updatedOrder).then(newOrder =>{
+    this.setState({ order: newOrder }); //update state
+  });
+}
+</code></pre>
 					<br>
 					<p>
 						<small>
@@ -493,13 +494,13 @@ render() {
 				<section>
 					<h2>Digestible example</h2>
 					<p>Compute From states</p>
-					<pre class="fragment"><code  class="hljs javaScript" data-trim>
+					<pre class="fragment"><code  class="hljs js" data-trim>
 	class MyComponent extends Component {
 	  constructor(props) {
 	    super(props);
 	    this.state = { message: props.message + "!" };
 	  }
-	  componentWillReceiveProps(props) {
+	  getDerivedStateFromProps(props) {
 	    this.setState({ message: props.message + "!" });
 	  }
 	  render() {
@@ -533,10 +534,14 @@ render() {
 			</section>
 			<section>
 				<section>
+					<h3>Use Case - 2</h3>
+					<h2>Where to put the state?</h2>
+				</section>
+				<!-- <section>
 					<h2>What if you can</h2>
 					<h4>Recreate the wheel</h4>
 					<img src="./img/wheel.jpg" alt="">
-				</section>
+				</section> -->
 				<section>
 					<h3> Identify Component Hierarchy</h3>
 					<ul class="fragment">
@@ -630,8 +635,8 @@ render() {
 						<li>SearchBar doesn't have product list</li>
 						<li class="fragment">
 							<code>cart</code> doesn't have selected product price</li>
-						<li class="fragment">
-							<code>Shop</code> will contain the state
+						<li class="fragment"> Created
+							<code>Shop</code> Component to contain the state
 						</li>
 					</ul>
 					<p>
@@ -685,13 +690,14 @@ render() {
 					</p>
 				</section>
 				<section>
-					<h2>Quiz Time - 1</h2>
+					<h2>Quiz Time ???</h2>
+					<p class="fragment">What is the name of the app?</p>
 				</section>
 			</section>
 			<section>
 
 				<section>
-					<h3>Use Case - 2</h3>
+					<h3>Use Case - 3</h3>
 					<h2>You have a little mess</h2>
 				</section>
 				<section>
@@ -700,7 +706,7 @@ render() {
 					<img src="./img/ema-john/header.png" alt="">
 				</section>
 				<section>
-					<h4>More features mean...</h4>
+					<h2>More features mean...</h2>
 					<ul class="fragment">
 						<li>More components</li>
 						<li>More data, more props has to pass data</li>
@@ -861,14 +867,14 @@ render() {
 					<img src="./img/fun/sleeping.jpg" alt="">
 				</section>
 				<section>
-					<h2>Quiz</h2>
+					<h2>Quiz Time ???</h2>
 					<p class="fragment">Who was the guy knocking at the door?</p>
 					<img src="./img/knock.jpg" alt="" class="fragment">
 				</section>
 			</section>
 			<section>
 				<section>
-					<h3>Use Case-3</h3>
+					<h2>Use Case - 4</h2>
 					<h3>State management library: Redux</h3>
 					<br>
 					<p>When you need to share state a lot</p>
@@ -950,12 +956,12 @@ render() {
 				<section>
 					<h2>Actually state will not change</h2>
 					<h4 class="fragment">we will create a new state with the change</h4>
-					<pre class="hljs JavaScript fragment"><code>
+					<pre class="fragment"><code>
 function add(x, y){
   return x + y;
 }
 						</code></pre>
-					<pre class="hljs JavaScript fragment" data-trim><code>
+					<pre class="fragment" data-trim><code>
 add(1, 2); // output is 3
 add(1, 2); // output still is 3
 add(1, 2); // WILL ALWAYS output 3
@@ -976,7 +982,7 @@ add(1, 2); // WILL ALWAYS output 3
 							<strong>reducer</strong>
 						</li>
 					</ul>
-					<pre class="hljs javascript"><code>
+					<pre class=""><code>
 case ADD_TODO:
   return [
   ...todos,
@@ -1194,14 +1200,14 @@ npm install --save react-redux
 					<h2>Other options</h2>
 					<ul>
 						<li>
-							<a href="https://www.reindex.io/blog/redux-and-relay/">Relay/Apollo & GraphQL</a>
-						</li>
-						<li>
 							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Unstated</a>,
 							<a href="https://medium.com/react-native-training/unstated-the-setstate-of-react-state-management-8ce47b240e6d">Explore unstated</a>
 						</li>
 						<li>
 							<a href="https://hackernoon.com/redesigning-redux-b2baee8b8a38">Rematch: Redux best practices without the boilerplate</a>
+						</li>
+						<li>
+							<a href="https://www.reindex.io/blog/redux-and-relay/">Relay/Apollo & GraphQL</a>
 						</li>
 						<li>
 							<a href="">Local Storage</a>
@@ -1217,7 +1223,7 @@ npm install --save react-redux
 					<img src="./img/fun/sleeping6.jpg" alt="">
 				</section>
 				<section>
-					<h2>Quiz</h2>
+					<h2>Quiz Time ???</h2>
 					<br>
 					<br>
 					<p class="fragment">How many guys were sleeping in the class room?</p>
@@ -1225,7 +1231,7 @@ npm install --save react-redux
 			</section>
 			<section>
 				<section>
-					<h3>Use Case -4</h3>
+					<h3>Use Case -5</h3>
 					<h2>Context API</h2>
 					<p>New cool kid in the corner since React 16.3</p>
 				</section>
@@ -1291,7 +1297,11 @@ npm install --save react-redux
 					<h2>Replace Redux by Context API</h2>
 					<br>
 					<br>
-					<p><small><a href="https://medium.freecodecamp.org/replacing-redux-with-the-new-react-context-api-8f5d01a00e8c">Replacing Redux with the new React context API</a></small></p>
+					<p>
+						<small>
+							<a href="https://medium.freecodecamp.org/replacing-redux-with-the-new-react-context-api-8f5d01a00e8c">Replacing Redux with the new React context API</a>
+						</small>
+					</p>
 				</section>
 			</section>
 			<section>
@@ -1446,55 +1456,55 @@ npm install --save react-redux
 				</section> -->
 			</section>
 			<section>
-					<section>
-						<h1>Learn New thing</h1>
-					</section>
-					<section>
-						<h2>Learn react by building</h2>
-						<ul>
-							<li>Build an
-								<a target="_blank" href="https://ema-john.firebaseapp.com/">e-commerce site</a>
-							</li>
-						</ul>
-						<img class="fragment" style="height:500px;" src="./img/others/workshop1.jpg" alt="">
-					</section>
-					<section>
-						<p>
-							<a href="http://thatjsdude.com/workshops/react/">thatjsdude.com/workshops/react</a>
-						</p>
-						Email:
-						<span>khan4019@gmail.com</span>
-					</section>
+				<section>
+					<h1>Learn New thing</h1>
 				</section>
-			<section>
-					<h2>References</h2>
+				<section>
+					<h2>Learn react by building</h2>
 					<ul>
-						<li>
-							<a href="https://medium.freecodecamp.org/async-operations-using-redux-saga-2ba02ae077b3">Async operations using redux-saga</a>
-						</li>
-						<li>
-							<a href="https://wecodetheweb.com/2016/10/01/handling-async-in-redux-with-sagas/">Handling async in Redux with Sagas</a>
-						</li>
-						<li>
-							<a href="https://riad.blog/2015/12/28/redux-nowadays-from-actions-creators-to-sagas/">From actions creators to sagas</a>
-						</li>
-						<li>
-							<a href="https://medium.com/@tonypai/learn-redux-saga-with-simple-example-a7175417f9fd"> Redux Saga With Example</a>
-						</li>
-						<li>
-							<a href="https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1">Use set state as a function</a>
-						</li>
-						<li>
-							<a href="https://medium.com/grey-frogs/writing-more-testable-code-with-redux-saga-c1561f995225">Testable code with Saga</a>
-						</li>
-						<li>
-							<a href="https://github.com/markerikson/react-redux-links/blob/master/redux-side-effects.md">list of important resources</a>
-						</li>
-						<li>
-							<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">Saga vs thunk</a>
+						<li>Build an
+							<a target="_blank" href="https://ema-john.firebaseapp.com/">e-commerce site</a>
 						</li>
 					</ul>
+					<img class="fragment" style="height:500px;" src="./img/others/workshop1.jpg" alt="">
 				</section>
+				<section>
+					<p>
+						<a href="http://thatjsdude.com/workshops/react/">thatjsdude.com/workshops/react</a>
+					</p>
+					Email:
+					<span>khan4019@gmail.com</span>
+				</section>
+			</section>
+			<section>
+				<h2>References</h2>
+				<ul>
+					<li>
+						<a href="https://medium.freecodecamp.org/async-operations-using-redux-saga-2ba02ae077b3">Async operations using redux-saga</a>
+					</li>
+					<li>
+						<a href="https://wecodetheweb.com/2016/10/01/handling-async-in-redux-with-sagas/">Handling async in Redux with Sagas</a>
+					</li>
+					<li>
+						<a href="https://riad.blog/2015/12/28/redux-nowadays-from-actions-creators-to-sagas/">From actions creators to sagas</a>
+					</li>
+					<li>
+						<a href="https://medium.com/@tonypai/learn-redux-saga-with-simple-example-a7175417f9fd"> Redux Saga With Example</a>
+					</li>
+					<li>
+						<a href="https://medium.com/@wisecobbler/using-a-function-in-setstate-instead-of-an-object-1f5cfd6e55d1">Use set state as a function</a>
+					</li>
+					<li>
+						<a href="https://medium.com/grey-frogs/writing-more-testable-code-with-redux-saga-c1561f995225">Testable code with Saga</a>
+					</li>
+					<li>
+						<a href="https://github.com/markerikson/react-redux-links/blob/master/redux-side-effects.md">list of important resources</a>
+					</li>
+					<li>
+						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">Saga vs thunk</a>
+					</li>
+				</ul>
+			</section>
 			<section>
 				<section>
 					<h2>Free tip</h2>
