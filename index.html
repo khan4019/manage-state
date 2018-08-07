@@ -128,7 +128,7 @@
 				<h2>We will cover</h2>
 				<ol>
 					<li>What is State</li>
-					<li>5 scenarios to Manage state</li>
+					<li>4 scenarios to Manage state</li>
 					<li>Redux</li>
 					<li>Context Api</li>
 					<li>Redux-saga</li>
@@ -193,6 +193,10 @@
 				<section>
 					<h2>What is changing in this pic?</h2>
 					<img src="./img/mario.gif" alt="">
+				</section>
+				<section>
+					<h2>What does changes in Facebook/Youtube?</h2>
+					<p>Due to  user interaction.</p>
 				</section>
 				<!-- <section>
 					<h3>In an application</h3>
@@ -462,20 +466,23 @@ render() {
 					</p>
 				</section>
 				<section>
+					<h2>Toggle  Product</h2>
+					<br>
 					<pre><code class="hljs" data-trim contenteditable>
 							toggleProductInOrder(product) {
 							  const order = this.state.order;
 							  const selectedProduct = this.getSelected(product);							
+							  
 							  //Updating an order is just adding or removing on item
 							  const updatedOrder = selectedProduct
 							   ? without(order, product) : concat(order, product) ;							
-							  return api.shop.updateOrder(updatedOrder)
+							 
+							   return api.shop.updateOrder(updatedOrder)
 							   .then(newOrder => {
 							     this.setState({ order: newOrder }); //update one state
 							  });
 							}							
 					</code></pre>
-					<br>
 					<br>
 					<p>
 						<small>
@@ -1437,7 +1444,29 @@ npm install --save react-redux
 						<a href="https://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es2017-asy/34933395#34933395">saga vs thunk</a>
 					</p>
 				</section> -->
-				<section>
+			</section>
+			<section>
+					<section>
+						<h1>Learn New thing</h1>
+					</section>
+					<section>
+						<h2>Learn react by building</h2>
+						<ul>
+							<li>Build an
+								<a target="_blank" href="https://ema-john.firebaseapp.com/">e-commerce site</a>
+							</li>
+						</ul>
+						<img class="fragment" style="height:500px;" src="./img/others/workshop1.jpg" alt="">
+					</section>
+					<section>
+						<p>
+							<a href="http://thatjsdude.com/workshops/react/">thatjsdude.com/workshops/react</a>
+						</p>
+						Email:
+						<span>khan4019@gmail.com</span>
+					</section>
+				</section>
+			<section>
 					<h2>References</h2>
 					<ul>
 						<li>
@@ -1466,7 +1495,6 @@ npm install --save react-redux
 						</li>
 					</ul>
 				</section>
-			</section>
 			<section>
 				<section>
 					<h2>Free tip</h2>
